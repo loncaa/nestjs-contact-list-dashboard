@@ -11,6 +11,7 @@ type AppProps = {};
 type AppState = {
   contacts: Contact[];
   totalPages: number;
+  page: number;
 };
 
 class App extends React.Component<{}, AppState> {
@@ -18,61 +19,62 @@ class App extends React.Component<{}, AppState> {
     super(props);
 
     this.state = {
+      page: 1,
       totalPages: 0,
       contacts: [],
     };
   }
 
-  componentDidMount() {
-    ContactService.fetchContacts(1)
-      .then(({ contacts, totalPages }) => {
-        this.setState({
-          contacts,
-          totalPages,
-        });
-      })
-      .catch((e) => {
-        console.log(e.message);
-      });
+  async componentDidMount() {
+    const { contacts, totalPages } = await ContactService.fetchContacts(
+      this.state.page
+    );
+    this.setState({
+      contacts,
+      totalPages,
+    });
   }
 
-  changeContactsListPage = (
+  changeContactsListPage = async (
     event: React.ChangeEvent<unknown>,
     page: number
   ) => {
-    ContactService.fetchContacts(page)
-      .then(({ contacts, totalPages }) => {
-        this.setState({
-          contacts,
-          totalPages,
-        });
-      })
-      .catch((e) => {
-        console.log(e.message);
-      });
-  };
-
-  onUpdateHand = (id: string, payload: CreateContactDTO) => {
-    ContactService.updateContact(id, payload).then((updatedContact) => {
-      const contacts = [...this.state.contacts];
-      const i = contacts.findIndex((c) => c.id === id);
-
-      contacts[i] = updatedContact;
-      this.setState({
-        contacts,
-      });
+    const { contacts, totalPages } = await ContactService.fetchContacts(page);
+    this.setState({
+      contacts,
+      totalPages,
+      page,
     });
   };
 
-  ondeleteHandler = (id: string) => {
-    ContactService.deleteContact(id).then((contact) => {
-      const contacts = [...this.state.contacts];
-      const i = contacts.findIndex((c) => c.id === contact.id);
+  onUpdateHandler = async (id: string, payload: CreateContactDTO) => {
+    const updatedContact = await ContactService.updateContact(id, payload);
+    const contacts = [...this.state.contacts];
+    const i = contacts.findIndex((c) => c.id === id);
 
-      contacts.splice(i, 1);
-      this.setState({
-        contacts,
-      });
+    contacts[i] = updatedContact;
+    this.setState({
+      contacts,
+    });
+  };
+
+  onDeleteHandler = async (id: string) => {
+    await ContactService.deleteContact(id);
+    let { contacts, totalPages } = await ContactService.fetchContacts(
+      this.state.page
+    );
+
+    let page = this.state.page;
+    if (totalPages < page) {
+      page = totalPages;
+      const refetchResponse = await ContactService.fetchContacts(page);
+      contacts = refetchResponse.contacts;
+    }
+
+    this.setState({
+      contacts,
+      totalPages,
+      page,
     });
   };
 
@@ -92,10 +94,11 @@ class App extends React.Component<{}, AppState> {
             <p>Click on a button to create a new contact.</p>
           ) : (
             <ContactListComponent
+              page={this.state.page}
               totalPages={this.state.totalPages}
               contacts={this.state.contacts}
-              onUpdateHandler={this.onUpdateHand}
-              ondeleteHandler={this.ondeleteHandler}
+              onUpdateHandler={this.onUpdateHandler}
+              onDeleteHandler={this.onDeleteHandler}
               changeContactsListPageHandler={this.changeContactsListPage}
             />
           )}
