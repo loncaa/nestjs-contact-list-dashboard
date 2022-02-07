@@ -26,7 +26,7 @@ export function ContactComponent({
   onupdate,
 }: ContactProps) {
   return (
-    <Card sx={{ minWidth: 275 }}>
+    <Card sx={{ minWidth: 275, margin: 1 }} variant="outlined">
       <CardContent>
         <Typography sx={{ fontSize: 14 }} color="text.secondary" gutterBottom>
           {email}
@@ -49,6 +49,7 @@ export function ContactComponent({
           Edit
         </Button>
         <IconButton
+          style={{ marginLeft: "auto" }}
           aria-label="delete"
           size="small"
           onClick={() => ondelete(id)}

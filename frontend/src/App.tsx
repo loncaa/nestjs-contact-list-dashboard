@@ -1,3 +1,4 @@
+import { Button } from "@mui/material";
 import React from "react";
 import "./App.css";
 import { CreateContactDTO } from "./components/contact/contact.dto";
@@ -9,6 +10,8 @@ import { ContactListComponent } from "./components/contactList.component";
 type AppProps = {};
 type AppState = {
   contacts: Contact[];
+  currentPage: number;
+  totalPages: number;
 };
 
 class App extends React.Component<{}, AppState> {
@@ -16,6 +19,8 @@ class App extends React.Component<{}, AppState> {
     super(props);
 
     this.state = {
+      currentPage: 0,
+      totalPages: 0,
       contacts: [],
     };
   }
@@ -60,10 +65,20 @@ class App extends React.Component<{}, AppState> {
     return (
       <div className="App">
         <header className="App-header">
+          <Button
+            size="small"
+            onClick={() => {
+              console.log("create");
+            }}
+          >
+            Create Contact
+          </Button>
           {this.state.contacts.length === 0 ? (
-            <p>Empty</p>
+            <p>Click on a button to create a new contact.</p>
           ) : (
             <ContactListComponent
+              currentPage={this.state.currentPage}
+              totalPages={this.state.totalPages}
               contacts={this.state.contacts}
               onUpdateHandler={this.onUpdateHand}
               ondeleteHandler={this.ondeleteHandler}
