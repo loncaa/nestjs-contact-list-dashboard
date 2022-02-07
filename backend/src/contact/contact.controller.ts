@@ -9,6 +9,7 @@ import {
   Put,
   HttpStatus,
   HttpException,
+  Query,
 } from '@nestjs/common';
 import { ContactService } from './contact.service';
 import { CreateContactDTO } from './dto/contact.dto';
@@ -38,8 +39,8 @@ export class ContactController {
   }
 
   @Get()
-  getContacts() {
-    const contacts = this.contactService.getContacts();
+  getContacts(@Query('first') first, @Query('offset') offset) {
+    const contacts = this.contactService.getContacts(first, offset);
 
     return contacts;
   }

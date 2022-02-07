@@ -5,3 +5,12 @@ export interface Contact {
   readonly address: string;
   readonly phone: string;
 }
+
+export interface DatabaseEntry {
+  [key: string]: Contact;
+}
+
+export interface ContactsResponseObject {
+  contacts: Contact[];
+  count: number;
+}

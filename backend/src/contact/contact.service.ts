@@ -1,15 +1,18 @@
 import { Injectable } from '@nestjs/common';
 import { ContactRepository } from 'src/contact/contact.repository';
 import { CreateContactDTO } from './dto/contact.dto';
-import { Contact } from './interfaces/contact.interface';
+import {
+  Contact,
+  ContactsResponseObject,
+} from './interfaces/contact.interface';
 
 @Injectable()
 export class ContactService {
   constructor(private readonly contactRepository: ContactRepository) {}
 
-  getContacts(): Contact[] {
-    const contacts = this.contactRepository.getAllContacts();
-    return contacts;
+  getContacts(first: number, offset: number): ContactsResponseObject {
+    const response = this.contactRepository.getAllContacts(first, offset);
+    return response;
   }
 
   getContactById(id: string): Contact {

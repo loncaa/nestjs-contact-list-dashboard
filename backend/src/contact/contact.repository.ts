@@ -1,12 +1,12 @@
 import { randomUUID } from 'crypto';
-import { Contact } from './interfaces/contact.interface';
+import {
+  Contact,
+  ContactsResponseObject,
+  DatabaseEntry,
+} from './interfaces/contact.interface';
 
 import { Injectable } from '@nestjs/common';
 import { CreateContactDTO } from 'src/contact/dto/contact.dto';
-
-interface DatabaseEntry {
-  [key: string]: Contact;
-}
 
 @Injectable()
 export class ContactRepository {
@@ -16,8 +16,18 @@ export class ContactRepository {
     this.database = {};
   }
 
-  getAllContacts(): Contact[] {
-    return Object.keys(this.database).map((k) => this.database[k]);
+  getAllContacts(
+    first: number = 0,
+    offset: number = 3,
+  ): ContactsResponseObject {
+    const list = Object.keys(this.database);
+    const count = list.length;
+    const contacts = list.splice(first, offset).map((k) => this.database[k]);
+
+    return {
+      count,
+      contacts,
+    };
   }
 
   storeContact(contact: CreateContactDTO): Contact {
