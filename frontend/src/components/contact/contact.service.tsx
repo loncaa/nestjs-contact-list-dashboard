@@ -19,4 +19,22 @@ async function createContact(
   return response.data;
 }
 
-export { fetchContacts, fetchContactById, createContact };
+async function updateContact(
+  id: string,
+  createContactPayload: CreateContactDTO
+): Promise<Contact> {
+  const response = await axios.put(`/contact/${id}`, createContactPayload);
+  return response.data;
+}
+async function deleteContact(id: string): Promise<Contact> {
+  const response = await axios.delete(`/contact/${id}`);
+  return response.data;
+}
+
+export {
+  fetchContacts,
+  fetchContactById,
+  createContact,
+  updateContact,
+  deleteContact,
+};
