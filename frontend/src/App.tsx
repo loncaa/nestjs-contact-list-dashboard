@@ -1,26 +1,49 @@
-import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+import React from "react";
+import "./App.css";
+import { Contact } from "./components/contact/contact.interface";
 
-function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.tsx</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+import { fetchContacts } from "./components/contact/contact.service";
+import { ContactListComponent } from "./components/contactList.component";
+
+type AppProps = {};
+type AppState = {
+  contacts: Contact[];
+};
+
+class App extends React.Component<{}, AppState> {
+  constructor(props: AppProps) {
+    super(props);
+
+    this.state = {
+      contacts: [],
+    };
+  }
+
+  componentDidMount() {
+    fetchContacts()
+      .then((contacts) => {
+        this.setState({
+          contacts,
+        });
+      })
+      .catch((e) => {
+        console.log(e.message);
+      });
+  }
+
+  render(): React.ReactNode {
+    return (
+      <div className="App">
+        <header className="App-header">
+          {this.state.contacts.length === 0 ? (
+            <p>Empty</p>
+          ) : (
+            <ContactListComponent contacts={this.state.contacts} />
+          )}
+        </header>
+      </div>
+    );
+  }
 }
 
 export default App;
