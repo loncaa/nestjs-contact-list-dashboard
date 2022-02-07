@@ -6,7 +6,7 @@ type ContactListProps = {
   contacts: Contact[];
   onUpdateHandler: Function;
   ondeleteHandler: Function;
-  currentPage: number;
+  changeContactsListPageHandler: any;
   totalPages: number;
 };
 
@@ -14,7 +14,7 @@ export const ContactListComponent = ({
   contacts,
   onUpdateHandler,
   ondeleteHandler,
-  currentPage,
+  changeContactsListPageHandler,
   totalPages,
 }: ContactListProps) => (
   <div>
@@ -28,7 +28,12 @@ export const ContactListComponent = ({
     ))}
     <Stack spacing={2}>
       {totalPages > 0 ? (
-        <Pagination count={totalPages} shape="rounded" color="primary" />
+        <Pagination
+          count={totalPages}
+          shape="rounded"
+          color="primary"
+          onChange={changeContactsListPageHandler}
+        />
       ) : null}
     </Stack>
   </div>

@@ -5,3 +5,8 @@ export interface Contact {
   readonly address: string;
   readonly phone: string;
 }
+
+export interface ContactsResponseObject {
+  contacts: Contact[];
+  totalPages: number;
+}
