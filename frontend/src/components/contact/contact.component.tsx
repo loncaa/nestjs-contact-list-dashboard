@@ -12,8 +12,8 @@ type ContactProps = {
   email: string;
   address: string;
   phone: string;
-  ondelete: Function;
-  onupdate: Function;
+  onDelete: Function;
+  onUpdate: Function;
 };
 
 export function ContactComponent({
@@ -22,8 +22,8 @@ export function ContactComponent({
   address,
   phone,
   email,
-  ondelete,
-  onupdate,
+  onDelete,
+  onUpdate,
 }: ContactProps) {
   return (
     <Card sx={{ minWidth: 275, margin: 1 }} variant="outlined">
@@ -52,7 +52,7 @@ export function ContactComponent({
           style={{ marginLeft: "auto" }}
           aria-label="delete"
           size="small"
-          onClick={() => ondelete(id)}
+          onClick={() => onDelete(id)}
         >
           <DeleteIcon fontSize="inherit" />
         </IconButton>
