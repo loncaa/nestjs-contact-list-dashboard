@@ -1,6 +1,6 @@
 import { Pagination, Stack } from "@mui/material";
-import { ContactComponent } from "./contact/contact.component";
-import { Contact } from "./contact/contact.type";
+import { ContactComponent } from "../contact/contact.component";
+import { Contact } from "../contact/contact.type";
 
 interface ContactListProps {
   contacts: Contact[];

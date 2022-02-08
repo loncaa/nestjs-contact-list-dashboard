@@ -4,7 +4,7 @@ import CardContent from "@mui/material/CardContent";
 import Typography from "@mui/material/Typography";
 import DeleteIcon from "@mui/icons-material/Delete";
 import { IconButton } from "@mui/material";
-import ContactFormDialog from "../contactForm.component";
+import ContactFormDialog from "../contactForm/contactForm.component";
 
 interface ContactProps {
   id: string;

@@ -3,8 +3,8 @@ import "./App.css";
 import { Contact, ContactDTO } from "./components/contact/contact.type";
 
 import * as ContactService from "./components/contact/contact.service";
-import { ContactListComponent } from "./components/contactList.component";
-import ContactFormDialog from "./components/contactForm.component";
+import { ContactListComponent } from "./components/contactList/contactList.component";
+import ContactFormDialog from "./components/contactForm/contactForm.component";
 
 type AppProps = {};
 type AppState = {
