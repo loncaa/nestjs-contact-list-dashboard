@@ -1,11 +1,10 @@
-import { Button } from "@mui/material";
 import React from "react";
 import "./App.css";
-import { CreateContactDTO } from "./components/contact/contact.dto";
-import { Contact } from "./components/contact/contact.interface";
+import { Contact, ContactDTO } from "./components/contact/contact.type";
 
 import * as ContactService from "./components/contact/contact.service";
 import { ContactListComponent } from "./components/contactList.component";
+import ContactFormDialog from "./components/contactForm.component";
 
 type AppProps = {};
 type AppState = {
@@ -47,7 +46,19 @@ class App extends React.Component<{}, AppState> {
     });
   };
 
-  onUpdateHandler = async (id: string, payload: CreateContactDTO) => {
+  onCreateHandler = async (payload: ContactDTO) => {
+    await ContactService.createContact(payload);
+    let { contacts, totalPages } = await ContactService.fetchContacts(
+      this.state.page
+    );
+
+    this.setState({
+      contacts,
+      totalPages,
+    });
+  };
+
+  onUpdateHandler = (id: string) => async (payload: ContactDTO) => {
     const updatedContact = await ContactService.updateContact(id, payload);
     const contacts = [...this.state.contacts];
     const i = contacts.findIndex((c) => c.id === id);
@@ -82,14 +93,10 @@ class App extends React.Component<{}, AppState> {
     return (
       <div className="App">
         <header className="App-header">
-          <Button
-            size="small"
-            onClick={() => {
-              console.log("create");
-            }}
-          >
-            Create Contact
-          </Button>
+          <ContactFormDialog
+            functionHandler={this.onCreateHandler}
+            componentAction="Create"
+          />
           {this.state.contacts.length === 0 ? (
             <p>Click on a button to create a new contact.</p>
           ) : (
