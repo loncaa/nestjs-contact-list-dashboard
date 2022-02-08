@@ -35,9 +35,6 @@ export function ContactComponent({
         <Typography variant="h5" component="div">
           {name}
         </Typography>
-        <Typography sx={{ mb: 1.5 }} color="text.secondary">
-          {address}
-        </Typography>
         <Typography variant="body2">{phone}</Typography>
       </CardContent>
       <CardActions>
