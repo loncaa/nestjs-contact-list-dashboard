@@ -15,6 +15,7 @@ async function fetchContacts(page: number): Promise<ContactsRes> {
   );
   const { count, contacts } = response.data;
   const totalPages = Math.ceil(count / CONTACTS_OFFSET);
+  
   return {
     contacts,
     totalPages,
