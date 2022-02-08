@@ -3,14 +3,18 @@
 - backend is created with Nestjs
 - to start backend part of app follow these steps:
   - move to `./backend` folder
-  - execute command: `npm start`
+  - execute commands: 
+    - `npm i` 
+    - `npm start`
 
 ## Frontend
 
 - frontend is created with Reactjs
 - to start frontend part of app follow these steps:
   - move to `./frontend` folder
-  - execute command: `npm start`
+  - execute command: 
+    - `npm i` 
+    - `npm start`
 
 ## Web Application
 
