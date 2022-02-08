@@ -2,7 +2,7 @@ import { randomUUID } from 'crypto';
 import {
   Contact,
   ContactsResponseObject,
-  DatabaseEntry,
+  ContactDatabaseEntry,
 } from './interfaces/contact.interface';
 
 import { Injectable } from '@nestjs/common';
@@ -10,7 +10,7 @@ import { CreateContactDTO } from 'src/contact/dto/contact.dto';
 
 @Injectable()
 export class ContactRepository {
-  database: DatabaseEntry;
+  database: ContactDatabaseEntry;
 
   constructor() {
     this.database = {};

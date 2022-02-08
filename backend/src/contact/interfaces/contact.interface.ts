@@ -6,7 +6,7 @@ export interface Contact {
   readonly phone: string;
 }
 
-export interface DatabaseEntry {
+export interface ContactDatabaseEntry {
   [key: string]: Contact;
 }
 
