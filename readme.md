@@ -12,7 +12,7 @@
 - frontend is created with Reactjs
 - to start frontend part of app follow these steps:
   - move to `./frontend` folder
-  - execute command: 
+  - execute commands: 
     - `npm i` 
     - `npm start`
 
