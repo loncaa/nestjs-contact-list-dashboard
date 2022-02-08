@@ -19,6 +19,13 @@ export class ContactController {
 
   @Post()
   createContact(@Body() createContactDTO: CreateContactDTO) {
+    if(!createContactDTO.name || !createContactDTO.phone){
+      throw new HttpException(
+        `Name an phone are required fields.`,
+        HttpStatus.BAD_REQUEST,
+      );
+    }
+    
     const contact = this.contactService.createContact(createContactDTO);
 
     return contact;
