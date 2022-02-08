@@ -1,12 +1,12 @@
 import Card from "@mui/material/Card";
 import CardActions from "@mui/material/CardActions";
 import CardContent from "@mui/material/CardContent";
-import Button from "@mui/material/Button";
 import Typography from "@mui/material/Typography";
 import DeleteIcon from "@mui/icons-material/Delete";
 import { IconButton } from "@mui/material";
+import ContactFormDialog from "../contactForm.component";
 
-type ContactProps = {
+interface ContactProps {
   id: string;
   name: string;
   email: string;
@@ -14,7 +14,7 @@ type ContactProps = {
   phone: string;
   onDelete: Function;
   onUpdate: Function;
-};
+}
 
 export function ContactComponent({
   id,
@@ -25,6 +25,7 @@ export function ContactComponent({
   onDelete,
   onUpdate,
 }: ContactProps) {
+  const contact = { id, address, name, email, phone };
   return (
     <Card sx={{ minWidth: 275, margin: 1 }} variant="outlined">
       <CardContent>
@@ -40,19 +41,16 @@ export function ContactComponent({
         <Typography variant="body2">{phone}</Typography>
       </CardContent>
       <CardActions>
-        <Button
-          size="small"
-          onClick={() => {
-            console.log("upate");
-          }}
-        >
-          Edit
-        </Button>
+        <ContactFormDialog
+          contact={contact}
+          functionHandler={onUpdate}
+          componentAction="Edit"
+        />
         <IconButton
           style={{ marginLeft: "auto" }}
           aria-label="delete"
           size="small"
-          onClick={() => onDelete(id)}
+          onClick={() => onDelete()}
         >
           <DeleteIcon fontSize="inherit" />
         </IconButton>
