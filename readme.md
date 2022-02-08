@@ -14,4 +14,4 @@
 
 ## Web Application
 
-- visit `http://localhost:3000/`
+- visit [`http://localhost:3000/`](http://localhost:3000/)
