@@ -6,6 +6,7 @@ import DialogActions from "@mui/material/DialogActions";
 import DialogContent from "@mui/material/DialogContent";
 import DialogTitle from "@mui/material/DialogTitle";
 import { Contact } from "../contact/contact.type";
+import { Alert, Snackbar } from "@mui/material";
 
 interface ContactFormProps {
   contact?: Contact;
@@ -18,6 +19,7 @@ export default function ContactFormDialog({
   functionHandler,
   componentAction,
 }: ContactFormProps) {
+  const [openSnackbar, setOpenSnackbar] = React.useState(false);
   const [open, setOpen] = React.useState(false);
   const [email, setEmail] = React.useState("");
   const [name, setName] = React.useState("");
@@ -56,6 +58,7 @@ export default function ContactFormDialog({
 
   const onSubmitHandler = () => {
     const newContact: any = {};
+    let isValid = true;
 
     if (email) {
       newContact["email"] = email;
@@ -63,28 +66,44 @@ export default function ContactFormDialog({
 
     if (name) {
       newContact["name"] = name;
+    } else {
+      isValid = false;
     }
 
     if (phone) {
       newContact["phone"] = phone;
+    } else {
+      isValid = false;
+    }
+
+    if (!isValid) {
+      setOpenSnackbar(true);
+      return;
     }
 
     functionHandler(newContact);
   };
 
-  const handleEmailChange = (event: React.ChangeEvent<HTMLInputElement>) => {
-    const email = (event.target as HTMLInputElement).value;
-    setEmail(email);
+  const handleChangeValue = (
+    event: React.ChangeEvent<HTMLInputElement>,
+    field: string
+  ) => {
+    const value = (event.target as HTMLInputElement).value;
+    if (field == "email") {
+      setEmail(value);
+    } else if (field == "name") {
+      setName(value);
+    } else if (field == "phone") {
+      setPhone(value);
+    }
   };
 
-  const handleNameChange = (event: React.ChangeEvent<HTMLInputElement>) => {
-    const name = (event.target as HTMLInputElement).value;
-    setName(name);
-  };
+  const handleCloseSnackbar = (event: React.SyntheticEvent | Event, reason?: string) => {
+    if (reason === 'clickaway') {
+      return;
+    }
 
-  const handlePhoneChange = (event: React.ChangeEvent<HTMLInputElement>) => {
-    const phone = (event.target as HTMLInputElement).value;
-    setPhone(phone);
+    setOpenSnackbar(false);
   };
 
   return (
@@ -96,6 +115,7 @@ export default function ContactFormDialog({
         <DialogTitle>{componentAction} Contact Form</DialogTitle>
         <DialogContent>
           <TextField
+            error={name ? false : true}
             defaultValue={name}
             autoFocus
             margin="dense"
@@ -103,21 +123,11 @@ export default function ContactFormDialog({
             label="Contact Name"
             type="text"
             fullWidth
+            required
             variant="standard"
-            onChange={handleNameChange}
-          />
-        </DialogContent>
-        <DialogContent>
-          <TextField
-            defaultValue={email}
-            autoFocus
-            margin="dense"
-            id="name"
-            label="Email Address"
-            type="email"
-            fullWidth
-            variant="standard"
-            onChange={handleEmailChange}
+            onChange={(e: React.ChangeEvent<HTMLInputElement>) =>
+              handleChangeValue(e, "name")
+            }
           />
         </DialogContent>
         <DialogContent>
@@ -130,7 +140,26 @@ export default function ContactFormDialog({
             type="number"
             fullWidth
             variant="standard"
-            onChange={handlePhoneChange}
+            required
+            error={phone ? false : true}
+            onChange={(e: React.ChangeEvent<HTMLInputElement>) =>
+              handleChangeValue(e, "phone")
+            }
+          />
+        </DialogContent>
+        <DialogContent>
+          <TextField
+            defaultValue={email}
+            autoFocus
+            margin="dense"
+            id="name"
+            label="Email Address"
+            type="email"
+            fullWidth
+            variant="standard"
+            onChange={(e: React.ChangeEvent<HTMLInputElement>) =>
+              handleChangeValue(e, "email")
+            }
           />
         </DialogContent>
         <DialogActions>
@@ -138,6 +167,13 @@ export default function ContactFormDialog({
           <Button onClick={onSubmitHandler}>{componentAction}</Button>
         </DialogActions>
       </Dialog>
+      <Snackbar
+        open={openSnackbar}
+        autoHideDuration={2000}
+        onClose={handleCloseSnackbar}
+      >
+        <Alert severity="error">Enter required fields!</Alert>
+      </Snackbar>
     </div>
   );
 }
