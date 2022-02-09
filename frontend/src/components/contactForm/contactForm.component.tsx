@@ -60,9 +60,7 @@ export default function ContactFormDialog({
     const newContact: any = {};
     let isValid = true;
 
-    if (email) {
-      newContact["email"] = email;
-    }
+    newContact["email"] = email;
 
     if (name) {
       newContact["name"] = name;
