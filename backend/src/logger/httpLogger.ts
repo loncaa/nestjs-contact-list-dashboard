@@ -5,7 +5,7 @@ import { Request, Response } from 'express';
 export class HTTPLogger {
   private logger = new Logger('HTTP');
 
-  generateLoggerMessage(req: Request, res: Response) {
+  generateLogMessage(req: Request, res: Response) {
     const { ip, method, originalUrl: url } = req;
     const { statusCode } = res;
     const contentLength = res.get('content-length');
@@ -16,16 +16,19 @@ export class HTTPLogger {
     } - ${userAgent} ${ip}`;
   }
 
-  error(request, exception) {
-    const { method, originalUrl: url } = request;
+  generateErrorMessage(req: Request, exception) {
+    const { method, originalUrl: url } = req;
     const { statusCode, message, error } = exception;
-    const errorMessage = `${method} ${url} ${statusCode} ${error} - ${message}`;
+    return `${method} ${url} ${statusCode} ${error} - ${message}`;
+  }
 
-    this.logger.error(errorMessage);
+  error(req: Request, exception) {
+    const message = this.generateErrorMessage(req, exception);
+    this.logger.error(message);
   }
 
   log(req: Request, res: Response) {
-    const message = this.generateLoggerMessage(req, res);
+    const message = this.generateLogMessage(req, res);
 
     this.logger.log(message);
   }
