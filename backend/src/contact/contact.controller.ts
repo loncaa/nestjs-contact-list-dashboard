@@ -9,15 +9,19 @@ import {
   HttpStatus,
   HttpException,
   Query,
+  UsePipes,
 } from '@nestjs/common';
+import { JoiValidationPipe } from 'src/utils/joiValidation.pipe';
 import { ContactService } from './contact.service';
 import { CreateContactDTO } from './dto/contact.dto';
+import { createContactSchema } from './validation/createContact.schema';
 
 @Controller('contact')
 export class ContactController {
   constructor(private readonly contactService: ContactService) {}
 
   @Post()
+  @UsePipes(new JoiValidationPipe(createContactSchema))
   createContact(@Body() createContactDTO: CreateContactDTO) {
     if(!createContactDTO.name || !createContactDTO.phone){
       throw new HttpException(
