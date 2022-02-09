@@ -14,14 +14,14 @@ import {
 import { JoiValidationPipe } from 'src/utils/joiValidation.pipe';
 import { ContactService } from './contact.service';
 import { CreateContactDTO } from './dto/contact.dto';
-import { contactSchema } from './validation/contact.schema';
+import { createContactSchema, updateContactSchema } from './validation/contact.schema';
 
 @Controller('contact')
 export class ContactController {
   constructor(private readonly contactService: ContactService) {}
 
   @Post()
-  @UsePipes(new JoiValidationPipe(contactSchema))
+  @UsePipes(new JoiValidationPipe(createContactSchema))
   createContact(@Body() createContactDTO: CreateContactDTO) {
     const contact = this.contactService.createContact(createContactDTO);
 
@@ -49,7 +49,7 @@ export class ContactController {
   }
 
   @Put('/:contactID')
-  @UsePipes(new JoiValidationPipe(contactSchema))
+  @UsePipes(new JoiValidationPipe(updateContactSchema))
   updateContact(
     @Param('contactID') contactId,
     @Body() createContactDTO: CreateContactDTO,
