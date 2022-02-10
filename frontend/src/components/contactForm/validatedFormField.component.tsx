@@ -5,6 +5,7 @@ interface ContactFormProps {
   validationMethod?: Function;
   defaultValue: string;
   handleChangeValue: Function;
+  setIsValidHandler: Function;
   helperText: string;
   label: string;
   required?: boolean;
@@ -17,6 +18,7 @@ export default function ValidatedFormField({
   helperText,
   label,
   required,
+  setIsValidHandler,
 }: ContactFormProps) {
   const [isValid, setIsValid] = React.useState(true);
 
@@ -25,6 +27,7 @@ export default function ValidatedFormField({
     const valid = validationMethod ? validationMethod(value) : true;
 
     setIsValid(valid);
+    setIsValidHandler(valid);
     handleChangeValue(value);
   };
 
