@@ -95,7 +95,8 @@ class App extends React.Component<{}, AppState> {
         <header className="App-header">
           <ContactFormDialog
             functionHandler={this.onCreateHandler}
-            componentAction="Create"
+            actionName="Create Contact"
+            actionButtonLabel="Create"
           />
           {this.state.contacts.length === 0 ? (
             <p>Click on a button to create a new contact.</p>

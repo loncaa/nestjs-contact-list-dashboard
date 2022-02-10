@@ -41,7 +41,8 @@ export function ContactComponent({
         <ContactFormDialog
           contact={contact}
           functionHandler={onUpdate}
-          componentAction="Edit"
+          actionName="Edit Contact"
+          actionButtonLabel="Save"
         />
         <IconButton
           style={{ marginLeft: "auto" }}

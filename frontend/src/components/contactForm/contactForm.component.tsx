@@ -1,3 +1,4 @@
+import validator from "validator";
 import * as React from "react";
 import Button from "@mui/material/Button";
 import TextField from "@mui/material/TextField";
@@ -7,17 +8,21 @@ import DialogContent from "@mui/material/DialogContent";
 import DialogTitle from "@mui/material/DialogTitle";
 import { Contact } from "../contact/contact.type";
 import { Alert, Snackbar } from "@mui/material";
+import EmailField from "./validatedFormField.component";
+import ValidatedFormField from "./validatedFormField.component";
 
 interface ContactFormProps {
   contact?: Contact;
   functionHandler: Function;
-  componentAction: string;
+  actionName: string;
+  actionButtonLabel: string;
 }
 
 export default function ContactFormDialog({
   contact,
   functionHandler,
-  componentAction,
+  actionName,
+  actionButtonLabel,
 }: ContactFormProps) {
   const [openSnackbar, setOpenSnackbar] = React.useState(false);
   const [open, setOpen] = React.useState(false);
@@ -26,10 +31,10 @@ export default function ContactFormDialog({
   const [phone, setPhone] = React.useState("");
 
   React.useEffect(() => {
-    setContactForm();
+    initializeContactForm();
   }, []);
 
-  const setContactForm = () => {
+  const initializeContactForm = () => {
     if (contact) {
       const { email, name, phone } = contact;
       if (email) {
@@ -45,7 +50,7 @@ export default function ContactFormDialog({
   };
 
   const handleClickOpen = () => {
-    setContactForm();
+    initializeContactForm();
     setOpen(true);
   };
 
@@ -80,13 +85,10 @@ export default function ContactFormDialog({
     }
 
     functionHandler(newContact);
+    handleClose();
   };
 
-  const handleChangeValue = (
-    event: React.ChangeEvent<HTMLInputElement>,
-    field: string
-  ) => {
-    const value = (event.target as HTMLInputElement).value;
+  const handleChangeValue = (field: string) => (value: string) => {
     if (field == "email") {
       setEmail(value);
     } else if (field == "name") {
@@ -96,8 +98,11 @@ export default function ContactFormDialog({
     }
   };
 
-  const handleCloseSnackbar = (event: React.SyntheticEvent | Event, reason?: string) => {
-    if (reason === 'clickaway') {
+  const handleCloseSnackbar = (
+    event: React.SyntheticEvent | Event,
+    reason?: string
+  ) => {
+    if (reason === "clickaway") {
       return;
     }
 
@@ -107,62 +112,41 @@ export default function ContactFormDialog({
   return (
     <div>
       <Button size="small" onClick={handleClickOpen}>
-        {componentAction} Contact
+        {actionName}
       </Button>
       <Dialog open={open} onClose={handleClose}>
-        <DialogTitle>{componentAction} Contact Form</DialogTitle>
+        <DialogTitle>{actionName} Form</DialogTitle>
         <DialogContent>
-          <TextField
-            error={name ? false : true}
+          <ValidatedFormField
+            handleChangeValue={handleChangeValue("name")}
             defaultValue={name}
-            autoFocus
-            margin="dense"
-            id="Name"
-            label="Contact Name"
-            type="text"
-            fullWidth
-            required
-            variant="standard"
-            onChange={(e: React.ChangeEvent<HTMLInputElement>) =>
-              handleChangeValue(e, "name")
-            }
+            helperText="Name is incorrect."
+            label="Full name"
+            required={true}
           />
         </DialogContent>
         <DialogContent>
-          <TextField
+          <EmailField
+            validationMethod={validator.isMobilePhone}
+            handleChangeValue={handleChangeValue("phone")}
             defaultValue={phone}
-            autoFocus
-            margin="dense"
-            id="phone"
+            helperText="Phone is incorrect."
             label="Phone"
-            type="number"
-            fullWidth
-            variant="standard"
-            required
-            error={phone ? false : true}
-            onChange={(e: React.ChangeEvent<HTMLInputElement>) =>
-              handleChangeValue(e, "phone")
-            }
           />
         </DialogContent>
         <DialogContent>
-          <TextField
+          <EmailField
+            validationMethod={validator.isEmail}
+            handleChangeValue={handleChangeValue("email")}
             defaultValue={email}
-            autoFocus
-            margin="dense"
-            id="name"
-            label="Email Address"
-            type="email"
-            fullWidth
-            variant="standard"
-            onChange={(e: React.ChangeEvent<HTMLInputElement>) =>
-              handleChangeValue(e, "email")
-            }
+            helperText="Email is incorrect."
+            label="Email"
+            required={true}
           />
         </DialogContent>
         <DialogActions>
           <Button onClick={handleClose}>Close</Button>
-          <Button onClick={onSubmitHandler}>{componentAction}</Button>
+          <Button onClick={onSubmitHandler}>{actionButtonLabel}</Button>
         </DialogActions>
       </Dialog>
       <Snackbar
