@@ -1,5 +1,5 @@
 import { Injectable } from '@nestjs/common';
-import { ContactRepository } from 'src/contact/contact.repository';
+import { ContactRepository } from './contact.repository';
 import { CreateContactDTO } from './dto/contact.dto';
 import {
   Contact,
