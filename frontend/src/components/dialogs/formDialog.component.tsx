@@ -41,10 +41,6 @@ export default function FormDialog({
   const [isPhoneValid, setIsPhoneValid] = React.useState(true);
 
   React.useEffect(() => {
-    initializeContactForm();
-  }, [open]);
-
-  const initializeContactForm = () => {
     if (contact) {
       const { email, name, phone } = contact;
       if (email) {
@@ -57,7 +53,7 @@ export default function FormDialog({
         setPhone(phone);
       }
     }
-  };
+  }, [open]);
 
   const handleClose = () => {
     closeDialogHandler();
