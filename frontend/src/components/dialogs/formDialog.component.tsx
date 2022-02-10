@@ -116,6 +116,7 @@ export default function FormDialog({
           defaultValue={phone}
           helperText="Phone is incorrect."
           label="Phone"
+          required={true}
           setIsValidHandler={setIsPhoneValid}
         />
       </DialogContent>
@@ -126,7 +127,6 @@ export default function FormDialog({
           defaultValue={email}
           helperText="Email is incorrect."
           label="Email"
-          required={true}
           setIsValidHandler={setIsEmailValid}
         />
       </DialogContent>

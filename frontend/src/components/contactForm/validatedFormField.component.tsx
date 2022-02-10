@@ -24,7 +24,11 @@ export default function ValidatedFormField({
 
   const onChangeHandler = (e: React.ChangeEvent<HTMLInputElement>) => {
     const value = (e.target as HTMLInputElement).value;
-    const valid = validationMethod ? validationMethod(value) : true;
+    let valid = validationMethod ? validationMethod(value) : true;
+
+    if (required && !value) {
+      valid = false;
+    }
 
     setIsValid(valid);
     setIsValidHandler(valid);
