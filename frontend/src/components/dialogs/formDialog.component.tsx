@@ -42,7 +42,7 @@ export default function FormDialog({
 
   React.useEffect(() => {
     initializeContactForm();
-  }, []);
+  }, [open]);
 
   const initializeContactForm = () => {
     if (contact) {
