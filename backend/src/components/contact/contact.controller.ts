@@ -11,10 +11,13 @@ import {
   Query,
   UsePipes,
 } from '@nestjs/common';
-import { JoiValidationPipe } from 'src/utils/joiValidation.pipe';
+import { JoiValidationPipe } from 'src/pipes/joiValidation.pipe';
 import { ContactService } from './contact.service';
 import { CreateContactDTO } from './dto/contact.dto';
-import { createContactSchema, updateContactSchema } from './validation/contact.schema';
+import {
+  createContactSchema,
+  updateContactSchema,
+} from './validation/contact.schema';
 
 @Controller('contact')
 export class ContactController {

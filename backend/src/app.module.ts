@@ -1,7 +1,7 @@
 import { MiddlewareConsumer, Module } from '@nestjs/common';
 import { AppController } from './app.controller';
 import { AppService } from './app.service';
-import { ContactModule } from './contact/contact.module';
+import { ContactModule } from './components/contact/contact.module';
 import { HTTPLogger } from './logger/httpLogger';
 import { LoggerMiddleware } from './middleware/logger.middleware';
 

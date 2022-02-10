@@ -1,7 +1,7 @@
 import { NestFactory } from '@nestjs/core';
 import { AppModule } from './app.module';
 
-import { AllExceptionsFilter } from './filter/allExceptions.filter';
+import { AllExceptionsFilter } from './filters/allExceptions.filter';
 
 import helmet from 'helmet';
 
