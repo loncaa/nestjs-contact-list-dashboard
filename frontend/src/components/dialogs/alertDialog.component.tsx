@@ -36,7 +36,7 @@ export default function AlertDialog({
         <DialogContentText>
           If you delete this contacts information it will be permanently deleted
           and wont be possible to undo this action. Are you sure that you want
-          to delete your contact data?
+          to delete this contact information?
         </DialogContentText>
       </DialogContent>
       <DialogActions>
