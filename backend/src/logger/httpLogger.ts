@@ -18,8 +18,8 @@ export class HTTPLogger {
 
   generateErrorMessage(req: Request, exception) {
     const { method, originalUrl: url } = req;
-    const { statusCode, message, error } = exception;
-    return `${method} ${url} ${statusCode} ${error} - ${message}`;
+    const { status, message, error } = exception;
+    return `${method} ${url} ${status} ${error ? error : ''} - ${message}`;
   }
 
   error(req: Request, exception) {
