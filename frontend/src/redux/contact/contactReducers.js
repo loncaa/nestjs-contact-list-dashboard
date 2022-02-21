@@ -1,14 +1,12 @@
-import {contacts, favorites} from '../../mockData'
 import {actionTypes} from './contactActionTypes';
 
 import { DEFAULT_CONTACT} from '../../service/contactService'
 
-
 const initState = {
   filtered: [],
-  list: contacts,
-  favorites: favorites,
-  selectedContact: DEFAULT_CONTACT
+  list: null,
+  favorites: [],
+  selectedContact: null
 }
 
 function contactReducers(state = initState, action){
@@ -16,6 +14,15 @@ function contactReducers(state = initState, action){
   const data = {...action.data}
 
   switch (action.type) {
+    case actionTypes.LOAD_CONTACTS:
+      newState = {
+        list: data.contacts,
+        favorites: [],
+        filtered: [],
+        selectedContact: null
+      }
+
+      return newState;
     case actionTypes.REMOVE_CONTACT:{
       const contactId = data.id;
 
