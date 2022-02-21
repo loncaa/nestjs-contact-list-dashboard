@@ -3,7 +3,23 @@ export function createNumber(type, number) {
 }
 
 function generateRandomAvatar(name) {
-  return `https://eu.ui-avatars.com/api/?background=random&name=${name}`;
+  return `https://eu.ui-avatars.com/api/?background=78C9CE&name=${name}`;
+}
+
+export function createContactProfilePayload(
+  { fullName,
+    profilePicture,
+    isFavorite,
+    email,
+    numbers }
+) {
+  return {
+    fullName,
+    profilePicture: profilePicture ? profilePicture : generateRandomAvatar(fullName),
+    email,
+    isFavorite,
+    numbers,
+  };
 }
 
 export function createContactProfile(
@@ -16,9 +32,7 @@ export function createContactProfile(
   return {
     id: Math.random(),
     fullName,
-    profilePicture: profilePicture
-      ? profilePicture
-      : generateRandomAvatar(fullName),
+    profilePicture: profilePicture,
     email,
     isFavorite,
     numbers,
