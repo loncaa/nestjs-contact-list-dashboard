@@ -9,6 +9,12 @@ import Contact from "../../components/contact";
 import GridItem from "../../components/contact/GridItem";
 
 class Index extends Component {
+  componentDidMount() {
+    if (this.props.list === null) {
+      this.props.actions.contact.loadContacts();
+    }
+  }
+
   addToFavorites = (contactId) => {
     this.props.actions.contact.addToFavorites(contactId);
   };
@@ -26,7 +32,7 @@ class Index extends Component {
   };
 
   render() {
-    const ids = Object.keys(this.props.list);
+    const ids = this.props.list ? Object.keys(this.props.list) : [];
 
     return (
       <Grid container>
