@@ -1,0 +1,23 @@
+.root {
+    margin: 63px auto auto auto;
+}
+
+.text {
+    font-size: 16px;
+    letter-spacing: 0;
+    line-height: 19px;
+}
+
+@media only screen and (max-width: 460px){
+    .root {
+        margin: 23px auto auto auto;
+    }
+
+    .text {
+        font-size: 16px;
+        letter-spacing: 0;
+        line-height: 19px;
+        margin-top: 12px;
+        padding-left: 30px;
+    }
+}

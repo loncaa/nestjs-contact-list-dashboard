@@ -1,0 +1,27 @@
+.root {
+    margin: 71px auto auto auto
+}
+
+.phoneNumber{
+    margin-top: 43px !important;
+}
+
+.phoneNumber:first-child{
+    margin-top: 0 !important;
+}
+
+@media only screen and (max-width: 460px){
+    .root {
+        margin: 50px auto auto auto;
+    }
+
+    .phoneNumber{
+        padding-left: 30px;
+        margin-top: 32px !important;
+    }
+
+    .phoneNumber:first-child{
+        padding-left: 30px;
+        margin-top: 22px !important;
+    }
+}

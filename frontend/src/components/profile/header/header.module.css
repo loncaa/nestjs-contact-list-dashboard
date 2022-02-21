@@ -1,0 +1,22 @@
+.title {
+    margin-left: 20px;
+    font-size: 28px;
+    font-weight: bold;
+    letter-spacing: 0;
+    line-height: 34px;
+    text-align: center;
+}
+.left {
+    margin: auto;
+    flex: 1;
+    text-align: left;
+}
+.right {
+    margin: auto;
+    flex: 1;
+    text-align: right;
+}
+
+.editIconMargin {
+    margin-left: 33px;
+}

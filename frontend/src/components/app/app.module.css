@@ -1,0 +1,20 @@
+@media only screen and (min-width: 460px){
+    .desktopView{
+        display: inherit;
+         width: 100%;
+    }
+
+    .mobileView{
+        display: none;
+    }
+}
+
+@media only screen and (max-width: 459px){
+    .desktopView{
+        display: none;
+    }
+
+    .mobileView{
+        display: initial;
+    }
+}

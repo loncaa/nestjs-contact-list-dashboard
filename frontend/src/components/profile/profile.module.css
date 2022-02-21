@@ -1,0 +1,13 @@
+.root {
+    display: flex;
+    margin: auto;
+    max-width: 845px;
+    margin-top: 57px;
+}
+
+@media only screen and (max-width: 460px){
+    .root {
+        display: initial;
+        margin: 0;
+    }
+}
