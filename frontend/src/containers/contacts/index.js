@@ -10,7 +10,7 @@ import GridItem from "../../components/contact/GridItem";
 
 class Index extends Component {
   componentDidMount() {
-    if (this.props.list === null) {
+    if (!this.props.list || this.props.list.length === 0) {
       this.props.actions.contact.loadContacts();
     }
   }
