@@ -11,11 +11,9 @@ import { CreateContactDTO } from './dto/contact.dto';
 @Injectable()
 export class ContactRepository {
   database: ContactDatabaseEntry;
-  favorites: ContactDatabaseEntry;
 
   constructor() {
     this.database = {};
-    this.favorites = {};
   }
 
   getAllContacts(
@@ -36,9 +34,17 @@ export class ContactRepository {
     first: number = 0,
     offset: number = 3,
   ): ContactsResponseObject {
-    const list = Object.keys(this.favorites);
+    const list = Object.keys(this.database);
+    const favorites = list.reduce((acc, id) => {
+      if (this.database[id].isFavorite) {
+        acc.push(this.database[id]);
+      }
+
+      return acc;
+    }, []);
+
     const count = list.length;
-    const contacts = list.splice(first, offset).map((k) => this.favorites[k]);
+    const contacts = favorites.splice(first, offset);
 
     return {
       count,
@@ -51,10 +57,6 @@ export class ContactRepository {
     const response = { ...contact, id };
 
     this.database[id] = response;
-
-    if (contact.isFavorite) {
-      this.favorites[id] = response;
-    }
 
     return response;
   }
@@ -88,13 +90,12 @@ export class ContactRepository {
   }
 
   removeContactFromFavorites(id): Contact {
-    const contact = this.favorites[id];
+    const contact = this.database[id];
     if (!contact) {
       return null;
     }
 
     this.database[id] = { ...contact, isFavorite: false };
-    delete this.favorites[id];
 
     return contact;
   }
@@ -105,7 +106,10 @@ export class ContactRepository {
       return null;
     }
 
-    this.favorites[id] = contact;
+    const newContact = { ...contact, isFavorite: true };
+
+    this.database[id] = newContact;
+
     return contact;
   }
 }
