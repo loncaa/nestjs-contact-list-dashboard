@@ -1,11 +1,9 @@
 import { createAction } from '../actionHelper';
-import * as ContactApiService from '../../service/contactAPI.service';
 import { actionTypes } from './contactActionTypes';
 
-function loadContacts() {
-  return ContactApiService.fetchContacts().then(contacts => {
-    return createAction(actionTypes.LOAD_CONTACTS, { contacts });
-  })
+//TODO adapt backend
+function loadContacts(contacts) {
+  return createAction(actionTypes.LOAD_CONTACTS, { contacts });
 }
 
 function selectContact(contact) {
@@ -21,15 +19,11 @@ function cancelSearching() {
 }
 
 function saveContact(contact) {
-  return ContactApiService.createContact(contact).then(contact => {
-    return createAction(actionTypes.SAVE_CONTACT, contact);
-  });
+  return createAction(actionTypes.SAVE_CONTACT, contact);
 }
 
 function removeContact(contactId) {
-  return ContactApiService.deleteContact(contactId).then(() => {
-    return createAction(actionTypes.REMOVE_CONTACT, { id: contactId });
-  });
+  return createAction(actionTypes.REMOVE_CONTACT, { id: contactId });
 }
 
 function addToFavorites(contactId) {

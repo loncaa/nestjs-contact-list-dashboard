@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-
+import * as ContactApiService from '../../service/contactAPI.service';
 import EditProfile from '../../components/editProfile';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
@@ -36,7 +36,10 @@ class Index extends Component {
       const validationResponse = handleValidation(this.state.dirtyContact)
       if (validationResponse.valid) {
         const payload = ContactService.createContactProfilePayload(this.state.dirtyContact)
-        this.props.actions.contact.saveContact(payload);
+
+        ContactApiService.createContact(payload).then(contact =>
+          this.props.actions.contact.saveContact(contact));
+
         this.setState({ notificationOpen: true });
       } else {
         alert(`Field ${validationResponse.field} not valid: ${validationResponse.message}`);

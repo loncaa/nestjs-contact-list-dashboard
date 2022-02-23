@@ -3,6 +3,7 @@ import { bindActionCreators } from "redux";
 import { connect } from "react-redux";
 import Grid from "@material-ui/core/Grid";
 
+import * as ContactApiService from '../../service/contactAPI.service';
 import * as contactActions from "../../redux/contact/contactActions";
 
 import Contact from "../../components/contact";
@@ -11,7 +12,7 @@ import GridItem from "../../components/contact/GridItem";
 class Index extends Component {
   componentDidMount() {
     if (!this.props.list || this.props.list.length === 0) {
-      this.props.actions.contact.loadContacts();
+      ContactApiService.fetchContacts().then(contacts => this.props.actions.contact.loadContacts(contacts));
     }
   }
 
@@ -24,7 +25,8 @@ class Index extends Component {
   };
 
   removeContact = (contactId) => {
-    this.props.actions.contact.removeContact(contactId);
+    ContactApiService.deleteContact(contactId).then(() =>
+      this.props.actions.contact.removeContact(contactId));
   };
 
   selectContact = (profile) => {
