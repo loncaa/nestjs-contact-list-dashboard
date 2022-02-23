@@ -2,8 +2,14 @@ export interface Contact {
   id: string;
   readonly name: string;
   readonly email: string;
-  readonly address: string;
-  readonly phone: string;
+  readonly profilePicture: string;
+  readonly isFavorite: boolean;
+  readonly numbers: PhoneNumber[];
+}
+
+export class PhoneNumber {
+  readonly type: string;
+  readonly number: string;
 }
 
 export interface ContactDatabaseEntry {

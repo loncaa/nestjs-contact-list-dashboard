@@ -1,6 +1,12 @@
 export class CreateContactDTO {
   readonly name: string;
   readonly email: string;
-  readonly address: string;
-  readonly phone: string;
+  readonly profilePicture: string;
+  readonly isFavorite: boolean;
+  readonly numbers: CreateContactPhoneNumberDTO[];
+}
+
+export class CreateContactPhoneNumberDTO {
+  readonly type: string;
+  readonly number: string;
 }

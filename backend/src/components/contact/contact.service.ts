@@ -8,10 +8,15 @@ import {
 
 @Injectable()
 export class ContactService {
-  constructor(private readonly contactRepository: ContactRepository) {}
+  constructor(private readonly contactRepository: ContactRepository) { }
 
   getContacts(first: number, offset: number): ContactsResponseObject {
     const response = this.contactRepository.getAllContacts(first, offset);
+    return response;
+  }
+
+  getFavoriteContacts(first: number, offset: number): ContactsResponseObject {
+    const response = this.contactRepository.getAllFavoriteContacts(first, offset);
     return response;
   }
 
@@ -32,6 +37,16 @@ export class ContactService {
 
   deleteContact(id: string): Contact {
     const contact = this.contactRepository.deleteContact(id);
+    return contact;
+  }
+
+  addFavoriteContact(id: string): Contact {
+    const contact = this.contactRepository.addContactToFavorites(id);
+    return contact;
+  }
+
+  deleteFavoriteContact(id: string): Contact {
+    const contact = this.contactRepository.removeContactFromFavorites(id);
     return contact;
   }
 }

@@ -21,7 +21,7 @@ import {
 
 @Controller('contact')
 export class ContactController {
-  constructor(private readonly contactService: ContactService) {}
+  constructor(private readonly contactService: ContactService) { }
 
   @Post()
   @UsePipes(new JoiValidationPipe(createContactSchema))
@@ -31,12 +31,19 @@ export class ContactController {
     return contact;
   }
 
+  @Get('/favorite')
+  getContactFavorites(@Query('first') first, @Query('offset') offset) {
+    const contacts = this.contactService.getFavoriteContacts(first, offset);
+
+    return contacts;
+  }
+
   @Get('/:contactID')
   getContact(@Param('contactID') contactId) {
     const contact = this.contactService.getContactById(contactId);
     if (!contact) {
       throw new HttpException(
-        `Contact with ${contactId} not found.`,
+        `Contact with id ${contactId} not found.`,
         HttpStatus.NOT_FOUND,
       );
     }
@@ -75,6 +82,34 @@ export class ContactController {
   @Delete('/:contactID')
   deleteContact(@Param('contactID') contactId) {
     const contact = this.contactService.deleteContact(contactId);
+
+    if (!contact) {
+      throw new HttpException(
+        `Contact with ${contactId} not found.`,
+        HttpStatus.NOT_FOUND,
+      );
+    }
+
+    return contact;
+  }
+
+  @Post('/favorite/:contactID')
+  addFavoriteContact(@Param('contactID') contactId) {
+    const contact = this.contactService.addFavoriteContact(contactId);
+
+    if (!contact) {
+      throw new HttpException(
+        `Contact with ${contactId} not found.`,
+        HttpStatus.NOT_FOUND,
+      );
+    }
+
+    return contact;
+  }
+
+  @Delete('/favorite/:contactID')
+  removeFavoriteContact(@Param('contactID') contactId) {
+    const contact = this.contactService.deleteFavoriteContact(contactId);
 
     if (!contact) {
       throw new HttpException(
