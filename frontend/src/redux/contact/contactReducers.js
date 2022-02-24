@@ -1,6 +1,6 @@
-import {actionTypes} from './contactActionTypes';
+import { actionTypes } from './contactActionTypes';
 
-import { DEFAULT_CONTACT} from '../../service/contactService'
+import { DEFAULT_CONTACT } from '../../service/contactService'
 
 const initState = {
   filtered: [],
@@ -9,49 +9,60 @@ const initState = {
   selectedContact: null
 }
 
-function contactReducers(state = initState, action){
-  let newState = {...state}
-  const data = {...action.data}
+function contactReducers(state = initState, action) {
+  let newState = { ...state }
+  const data = { ...action.data }
 
   switch (action.type) {
     case actionTypes.LOAD_CONTACTS:
       newState = {
         list: data.contacts,
-        favorites: [],
+        favorites: data.favorites,
         filtered: [],
         selectedContact: null
       }
 
       return newState;
-    case actionTypes.REMOVE_CONTACT:{
+    case actionTypes.LOAD_INITIAL_CONTACTS:
+      const initial = data.init;
+
+      newState = {
+        list: initial.contacts,
+        favorites: initial.favorites,
+        filtered: [],
+        selectedContact: null
+      }
+
+      return newState;
+    case actionTypes.REMOVE_CONTACT: {
       const contactId = data.id;
 
-      if(newState.list[contactId]){
+      if (newState.list[contactId]) {
         delete newState.list[contactId];
       }
 
-      if(newState.favorites[contactId]){
+      if (newState.favorites[contactId]) {
         delete newState.favorites[contactId];
       }
 
       return newState;
     }
-    case actionTypes.SAVE_CONTACT:{
+    case actionTypes.SAVE_CONTACT: {
       const contactId = data.id;
 
-      if(newState.list[contactId]){
+      if (newState.list[contactId]) {
         newState.list[contactId] = data;
       }
 
-      if(newState.favorites[contactId]){
+      if (newState.favorites[contactId]) {
         newState.favorites[contactId] = data;
       }
 
-      if(newState.selectedContact && newState.selectedContact.id === contactId){
+      if (newState.selectedContact && newState.selectedContact.id === contactId) {
         newState.selectedContact = data;
       }
 
-      if(!newState.list[contactId]){
+      if (!newState.list[contactId]) {
         newState.list[contactId] = data;
       }
 
@@ -62,11 +73,11 @@ function contactReducers(state = initState, action){
       const contactId = data.id;
       let contact = newState.list[contactId];
 
-      if(contact){
+      if (contact) {
 
         contact.isFavorite = true;
 
-        if(!newState.favorites[contactId]){
+        if (!newState.favorites[contactId]) {
           newState.favorites[contactId] = contact;
         }
       }
@@ -76,10 +87,10 @@ function contactReducers(state = initState, action){
     case actionTypes.REMOVE_FROM_FAVORITES: {
       const contactId = data.id;
 
-      if(newState.favorites[contactId]){
+      if (newState.favorites[contactId]) {
         delete newState.favorites[contactId];
 
-        if(newState.list[contactId]){
+        if (newState.list[contactId]) {
           newState.list[contactId].isFavorite = false;
         }
       }
@@ -87,7 +98,7 @@ function contactReducers(state = initState, action){
     }
 
     case actionTypes.SEARCH_CONTACT: {
-      const fullName = data.fullName;
+      const name = data.name;
       const favorites = data.favorites;
       newState.filtered = [];
 
@@ -95,10 +106,10 @@ function contactReducers(state = initState, action){
 
       const keys = Object.keys(list);
       keys.forEach(k => {
-        if(newState.list[k]){
-          const name = list[k].fullName.toLowerCase();
-          const searchingFor = fullName.toLowerCase();
-          if(name.startsWith(searchingFor)){
+        if (newState.list[k]) {
+          const name = list[k].name.toLowerCase();
+          const searchingFor = name.toLowerCase();
+          if (name.startsWith(searchingFor)) {
             newState.filtered.push(list[k]);
           }
         }
@@ -111,9 +122,9 @@ function contactReducers(state = initState, action){
       return newState;
     }
     case actionTypes.SELECT_CONTACT: {
-      const contact = data.contact === undefined ? DEFAULT_CONTACT :  data.contact;
+      const contact = data.contact === undefined ? DEFAULT_CONTACT : data.contact;
 
-      return {...newState, selectedContact: contact};
+      return { ...newState, selectedContact: contact };
     }
     default:
       return newState;

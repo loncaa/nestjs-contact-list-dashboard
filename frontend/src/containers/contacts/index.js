@@ -12,15 +12,17 @@ import GridItem from "../../components/contact/GridItem";
 class Index extends Component {
   componentDidMount() {
     if (!this.props.list || this.props.list.length === 0) {
-      ContactApiService.fetchContacts().then(contacts => this.props.actions.contact.loadContacts(contacts));
+      ContactApiService.fetchInitialContactsData().then(data => this.props.actions.contact.loadInitialData(data));
     }
   }
 
   addToFavorites = (contactId) => {
+    ContactApiService.addToFavorites(contactId);
     this.props.actions.contact.addToFavorites(contactId);
   };
 
   removeFromFavorites = (contactId) => {
+    ContactApiService.removeFromFavorites(contactId);
     this.props.actions.contact.removeFromFavorites(contactId);
   };
 

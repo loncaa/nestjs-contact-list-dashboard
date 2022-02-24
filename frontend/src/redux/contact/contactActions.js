@@ -6,12 +6,16 @@ function loadContacts(contacts) {
   return createAction(actionTypes.LOAD_CONTACTS, { contacts });
 }
 
+function loadInitialData(data) {
+  return createAction(actionTypes.LOAD_INITIAL_CONTACTS, { init: data });
+}
+
 function selectContact(contact) {
   return createAction(actionTypes.SELECT_CONTACT, { contact: contact });
 }
 
-function searchByFullName(fullName, favorites) {
-  return createAction(actionTypes.SEARCH_CONTACT, { fullName, favorites });
+function searchByFullName(name, favorites) {
+  return createAction(actionTypes.SEARCH_CONTACT, { name, favorites });
 }
 
 function cancelSearching() {
@@ -35,6 +39,7 @@ function removeFromFavorites(contactId) {
 }
 
 export {
+  loadInitialData,
   loadContacts,
 
   saveContact,
