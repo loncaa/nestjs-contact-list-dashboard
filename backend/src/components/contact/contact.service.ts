@@ -7,6 +7,10 @@ import {
   InitialDataResponseObject,
 } from './interfaces/contact.interface';
 
+function generateRandomAvatar(name) {
+  return encodeURI(`https://eu.ui-avatars.com/api/?background=78C9CE&name=${name}`);
+}
+
 @Injectable()
 export class ContactService {
   constructor(private readonly contactRepository: ContactRepository) { }
@@ -32,11 +36,19 @@ export class ContactService {
   }
 
   createContact(createContact: CreateContactDTO): Contact {
+    if (!createContact.profilePicture) {
+      createContact.profilePicture = generateRandomAvatar(createContact.name);
+    }
+
     const contact = this.contactRepository.storeContact(createContact);
     return contact;
   }
 
   updateContact(id: string, updateContact: CreateContactDTO): Contact {
+    if (!updateContact.profilePicture) {
+      updateContact.profilePicture = generateRandomAvatar(updateContact.name);
+    }
+
     const contact = this.contactRepository.updateContact(id, updateContact);
     return contact;
   }

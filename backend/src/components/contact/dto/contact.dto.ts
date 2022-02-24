@@ -1,7 +1,7 @@
 export class CreateContactDTO {
   readonly name: string;
   readonly email: string;
-  readonly profilePicture: string;
+  profilePicture: string;
   readonly isFavorite: boolean;
   readonly numbers: CreateContactPhoneNumberDTO[];
 }
