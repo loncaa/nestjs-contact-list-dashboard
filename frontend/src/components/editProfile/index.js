@@ -1,9 +1,9 @@
 import React from 'react';
-import {useHistory} from 'react-router-dom';
+import { useHistory } from 'react-router-dom';
 
 import EditProfileAvatar from './editProfileAvatar';
 import EditProfileInformation from './editProfileInformation';
-import {ROUTES} from '../../constants';
+import { ROUTES } from '../../constants';
 
 import EditProfileStyle from './editProfile.module.css'
 
@@ -11,7 +11,7 @@ import EditProfileHeaderMobile from './header/EditProfileHeaderMobile';
 
 
 const Index = (props) => {
-  const { id, fullName, profilePicture } = props.dirty
+  const { id, name, profilePicture } = props.dirty
 
   const history = useHistory();
 
@@ -31,27 +31,27 @@ const Index = (props) => {
         handleRemoveContact={removeContact}
         handleBackToContacts={backToContacts}
       />
-    <div className={EditProfileStyle.root}>
-      <EditProfileAvatar
-        width={186}
-        height={186}
-        fullName={fullName}
-        src={profilePicture}
-        handleRemovePictureAction=''
-        handleAddPictureAction=''
-      />
-      <EditProfileInformation
-        contact={props.dirty}
-        handleRemoveContact={removeContact}
-        handleBackToContacts={backToContacts}
+      <div className={EditProfileStyle.root}>
+        <EditProfileAvatar
+          width={186}
+          height={186}
+          name={name}
+          src={profilePicture}
+          handleRemovePictureAction=''
+          handleAddPictureAction=''
+        />
+        <EditProfileInformation
+          contact={props.dirty}
+          handleRemoveContact={removeContact}
+          handleBackToContacts={backToContacts}
 
-        handleOnContactDataSave={props.handleOnContactDataSave}
-        handleOnChange={props.handleOnChange}
-        handleOnNumbersChange={props.handleOnNumbersChange}
-        handleOnNumberRemove={props.handleOnNumberRemove}
-        hadnleOnNewNumberAdded={props.hadnleOnNewNumberAdded}
-      />
-    </div>
+          handleOnContactDataSave={props.handleOnContactDataSave}
+          handleOnChange={props.handleOnChange}
+          handleOnNumbersChange={props.handleOnNumbersChange}
+          handleOnNumberRemove={props.handleOnNumberRemove}
+          hadnleOnNewNumberAdded={props.hadnleOnNewNumberAdded}
+        />
+      </div>
     </React.Fragment>
   )
 }

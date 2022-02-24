@@ -7,14 +7,14 @@ import ProfileHeaderDesktop from '../header/ProfileHeaderDesktop';
 const ProfileInformation = (props) => {
   return (
     <div className={ProfileInformationStyle.root}>
-        <ProfileHeaderDesktop
-          handleAddToFavorites={props.handleAddToFavorites}
-          handleRemoveFromFavorites={props.handleRemoveFromFavorites}
-          handleBackToContacts={props.handleBackToContacts}
-          handleEditContact={props.handleEditContact}
-          isFavorite={props.isFavorite}
-          fullName={props.fullName}
-        />
+      <ProfileHeaderDesktop
+        handleAddToFavorites={props.handleAddToFavorites}
+        handleRemoveFromFavorites={props.handleRemoveFromFavorites}
+        handleBackToContacts={props.handleBackToContacts}
+        handleEditContact={props.handleEditContact}
+        isFavorite={props.isFavorite}
+        name={props.name}
+      />
       <div className={ProfileInformationStyle.border}>
         <div className={ProfileInformationStyle.form}>
           <ProfileForm

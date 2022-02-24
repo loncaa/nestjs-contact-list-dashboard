@@ -3,19 +3,19 @@ import ProfileAvatarDesktop from './ProfileAvatarDesktop';
 import ProfileAvatarMobile from './ProfileAvatarMobile';
 
 const ProfileAvatar = (props) => {
-  const { fullName, profilePicture } = props;
+  const { name, profilePicture } = props;
 
   return (
-      <React.Fragment>
-        <ProfileAvatarDesktop
-          fullName={fullName}
-          profilePicture={profilePicture}
-        />
-        <ProfileAvatarMobile
-          fullName={fullName}
-          profilePicture={profilePicture}
-        />
-      </React.Fragment>
+    <React.Fragment>
+      <ProfileAvatarDesktop
+        name={name}
+        profilePicture={profilePicture}
+      />
+      <ProfileAvatarMobile
+        name={name}
+        profilePicture={profilePicture}
+      />
+    </React.Fragment>
   )
 }
 

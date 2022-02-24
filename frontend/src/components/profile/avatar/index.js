@@ -1,5 +1,5 @@
 import React from 'react';
-import {makeStyles} from '@material-ui/core/styles';
+import { makeStyles } from '@material-ui/core/styles';
 
 const useStyles = makeStyles({
   avatarBase: {
@@ -27,8 +27,8 @@ const Avatar = (props) => {
   return (
     <div style={rootStyle}>
       {props.src ?
-        <img src={props.src} alt={props.fullName} onClick={props.onClick}  className={classes.avatarBase} style={avatarStyle}/> :
-        <div className={classes.avatarBase} style={avatarStyle} onClick={props.onClick}/>
+        <img src={props.src} alt={props.name} onClick={props.onClick} className={classes.avatarBase} style={avatarStyle} /> :
+        <div className={classes.avatarBase} style={avatarStyle} onClick={props.onClick} />
       }
     </div>
   );

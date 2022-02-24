@@ -11,19 +11,19 @@ const ProfileHeader = (props) => {
   return (
     <div className={classes.root}>
       <div className={ProfileHeaderStyle.left}>
-        <BackIcon handleBackToContacts={props.handleBackToContacts}/>
-        <span className={ProfileHeaderStyle.title}>{props.fullName}</span>
+        <BackIcon handleBackToContacts={props.handleBackToContacts} />
+        <span className={ProfileHeaderStyle.title}>{props.name}</span>
       </div>
 
       <div className={ProfileHeaderStyle.right}>
         <FavoriteIcon
           isFavorite={props.isFavorite}
           handleRemoveFromFavorites={props.handleRemoveFromFavorites}
-          handleAddToFavorites={props.handleAddToFavorites}/>
-          <EditIcon
-            handleEditContact={props.handleEditContact}
-            style={{marginLeft:'33px'}}
-          />
+          handleAddToFavorites={props.handleAddToFavorites} />
+        <EditIcon
+          handleEditContact={props.handleEditContact}
+          style={{ marginLeft: '33px' }}
+        />
       </div>
     </div>);
 };

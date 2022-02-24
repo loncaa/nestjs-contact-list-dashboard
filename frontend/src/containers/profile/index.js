@@ -1,6 +1,7 @@
-import React, {Component} from 'react';
-import {bindActionCreators} from 'redux';
-import {connect} from 'react-redux';
+import React, { Component } from 'react';
+import { bindActionCreators } from 'redux';
+import { connect } from 'react-redux';
+import { Redirect } from 'react-router-dom'
 
 import * as contactActions from '../../redux/contact/contactActions';
 
@@ -16,13 +17,13 @@ class Index extends Component {
   };
 
   render() {
-    return (
+    return this.props.contact.selectedContact ?
       <Profile
         handleAddToFavorites={this.addToFavorites}
         handleRemoveFromFavorites={this.removeFromFavorites}
         contact={this.props.contact.selectedContact}
-      />
-    )
+      /> :
+      <Redirect to="/" />
   }
 }
 

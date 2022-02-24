@@ -1,12 +1,12 @@
-import React, {Component} from 'react';
-import {bindActionCreators} from 'redux';
-import {connect} from 'react-redux';
+import React, { Component } from 'react';
+import { bindActionCreators } from 'redux';
+import { connect } from 'react-redux';
 
 import * as contactActions from '../../redux/contact/contactActions';
 
 import Screen from '../../components/screen';
 import ScreenSelector from '../../components/screen/ScreenSelector';
-import {SCREENS} from '../../constants'
+import { SCREENS } from '../../constants'
 
 class Index extends Component {
 
@@ -17,32 +17,32 @@ class Index extends Component {
   }
 
   componentDidUpdate(prevProps) {
-    const {list: newList, filtered: newFiltered} = this.props.contact
-    const {list, filtered} = prevProps.contact;
+    const { list: newList, filtered: newFiltered } = this.props.contact
+    const { list, filtered } = prevProps.contact;
 
-    if(filtered !== newFiltered){
-      this.setState({list: newFiltered, searching: true});
-    }else if(list !== newList){
-      this.setState({list: newList, searching: false});
+    if (filtered !== newFiltered) {
+      this.setState({ list: newFiltered, searching: true });
+    } else if (list !== newList) {
+      this.setState({ list: newList, searching: false });
     }
   }
 
   componentDidMount() {
-    if(this.props.contact){
-      this.setState({list: this.props.contact.list, selectedScreen: SCREENS.contacts})
+    if (this.props.contact) {
+      this.setState({ list: this.props.contact.list, selectedScreen: SCREENS.contacts })
     }
   }
 
   selectContacts = () => {
-    this.setState({list: this.props.contact.list, showFavorites: false, selectedScreen: SCREENS.contacts});
+    this.setState({ list: this.props.contact.list, showFavorites: false, selectedScreen: SCREENS.contacts });
   }
 
   selectFavorites = () => {
-    this.setState({list: this.props.contact.favorites, showFavorites: true, selectedScreen: SCREENS.favorites});
+    this.setState({ list: this.props.contact.favorites, showFavorites: true, selectedScreen: SCREENS.favorites });
   }
 
-  searchContact = (fullName) => {
-    this.props.actions.contact.searchByFullName(fullName, this.state.showFavorites);
+  searchContact = (name) => {
+    this.props.actions.contact.searchByFullName(name, this.state.showFavorites);
   }
 
   render() {

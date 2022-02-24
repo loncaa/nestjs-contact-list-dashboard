@@ -1,17 +1,17 @@
 export const handleValidation = (dirty) => {
-  const response = {valid: true};
+  const response = { valid: true };
 
   //Name
-  if (!dirty['fullName']) {
-    response['field'] = 'fullName';
+  if (!dirty['name']) {
+    response['field'] = 'name';
     response['message'] = 'Cannot be empty';
     response['valid'] = false;
     return response;
   }
 
-  if (typeof dirty['fullName'] !== 'undefined') {
-    if (!dirty['fullName'].match(/^[A-Za-z\s]+$/)) {
-      response['field'] = 'fullName';
+  if (typeof dirty['name'] !== 'undefined') {
+    if (!dirty['name'].match(/^[A-Za-z\s]+$/)) {
+      response['field'] = 'name';
       response['message'] = 'Only letters';
       response['valid'] = false;
       return response;
@@ -39,7 +39,7 @@ export const handleValidation = (dirty) => {
   }
 
   //Numbers
-  if(!dirty['numbers'] || !Array.isArray(dirty['numbers'])) {
+  if (!dirty['numbers'] || !Array.isArray(dirty['numbers'])) {
     response['field'] = 'numbers';
     response['message'] = 'Cannot be undefined';
     response['valid'] = false;
@@ -47,14 +47,14 @@ export const handleValidation = (dirty) => {
   }
 
   dirty['numbers'].forEach(data => {
-    if(!data['type'] || data['type'] === '') {
+    if (!data['type'] || data['type'] === '') {
       response['field'] = 'number type';
       response['message'] = 'Cannot be undefined';
       response['valid'] = false;
       return response;
     }
 
-    if(!data['number'] || data['number'] === '') {
+    if (!data['number'] || data['number'] === '') {
       response['field'] = 'number';
       response['message'] = 'Cannot be undefined';
       response['valid'] = false;

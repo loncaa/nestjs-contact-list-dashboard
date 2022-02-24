@@ -1,5 +1,5 @@
 import React from 'react';
-import {makeStyles} from '@material-ui/core/styles';
+import { makeStyles } from '@material-ui/core/styles';
 
 import AppStyle from '../../app/app.module.css';
 import Avatar from '../avatar';
@@ -31,11 +31,11 @@ const ProfileAvatarMobile = (props) => {
     <div className={AppStyle.mobileView}>
       <div className={classes.root}>
         <Avatar height={53}
-                width={53}
-                margin={'auto'}
-                alt={props.fullName}
-                src={props.profilePicture}/>
-        <span className={classes.label}>{props.fullName}</span>
+          width={53}
+          margin={'auto'}
+          alt={props.name}
+          src={props.profilePicture} />
+        <span className={classes.label}>{props.name}</span>
       </div>
     </div>
   )

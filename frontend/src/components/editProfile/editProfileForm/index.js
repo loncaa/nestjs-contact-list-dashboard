@@ -1,6 +1,6 @@
 import React from 'react';
-import {useHistory} from 'react-router-dom';
-import {makeStyles} from '@material-ui/core/styles';
+import { useHistory } from 'react-router-dom';
+import { makeStyles } from '@material-ui/core/styles';
 
 import EditProfileEmail from './EditProfileEmail';
 import EditProfileFullName from './EditProfileFullName';
@@ -38,7 +38,7 @@ const useStyles = makeStyles({
 });
 
 const EditProfileForm = (props) => {
-  const {fullName, email, numbers} = props.contact;
+  const { name, email, numbers } = props.contact;
 
   const classes = useStyles();
   const history = useHistory();
@@ -55,14 +55,14 @@ const EditProfileForm = (props) => {
   return (
     <form onSubmit={handleOnSubmit}>
       <EditProfileFullName
-        name='fullName'
+        name='name'
         handleOnChange={props.handleOnChange}
-        fullName={fullName}/>
+        fullName={name} />
 
       <EditProfileEmail
         name='email'
         handleOnChange={props.handleOnChange}
-        email={email}/>
+        email={email} />
 
 
       <EditProfilePhoneNumbers
@@ -73,7 +73,7 @@ const EditProfileForm = (props) => {
 
       <Grid container item xs={12} sm={12}>
         <div className={classes.button} onClick={props.hadnleOnNewNumberAdded}>
-          <PlusIcon/>
+          <PlusIcon />
         </div>
         <span className={classes.label}>Add number</span>
       </Grid>

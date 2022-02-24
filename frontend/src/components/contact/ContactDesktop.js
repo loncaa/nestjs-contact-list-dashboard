@@ -1,5 +1,5 @@
-import React, {useState} from 'react';
-import {makeStyles} from '@material-ui/core/styles';
+import React, { useState } from 'react';
+import { makeStyles } from '@material-ui/core/styles';
 
 import AppStyle from '../app/app.module.css'
 
@@ -26,13 +26,13 @@ const ContactDesktop = (props) => {
   const [mouseEnter, setMouseEnter] = useState(false);
   const classes = useStyles();
 
-  const {fullName, profilePicture, isFavorite} = props.item;
+  const { name, profilePicture, isFavorite } = props.item;
 
   return (
     <div className={AppStyle.desktopView}>
       <div className={classes.box}
-           onMouseEnter={() => setMouseEnter(true)}
-           onMouseLeave={() => setMouseEnter(false)}>
+        onMouseEnter={() => setMouseEnter(true)}
+        onMouseLeave={() => setMouseEnter(false)}>
         <ContactHeader
           isMouseEnter={mouseEnter}
           isFavorite={isFavorite}
@@ -42,7 +42,7 @@ const ContactDesktop = (props) => {
           handleSelectContact={props.handleSelectContact}
         />
         <ContactBody
-          fullName={fullName}
+          name={name}
           profilePicture={profilePicture}
           handleSelectContact={props.handleSelectContact}
         />

@@ -1,6 +1,6 @@
 import React from 'react';
 
-import {makeStyles} from '@material-ui/core/styles';
+import { makeStyles } from '@material-ui/core/styles';
 import UploadIcon from '../../icon/upload';
 import XksIcon from '../../icon/xks';
 
@@ -28,7 +28,7 @@ const useStyles = makeStyles({
 const EditProfileAvatar = (props) => {
   const classes = useStyles();
 
-  const { src, fullName, handleRemovePictureAction, handleAddPictureAction} = props;
+  const { src, name, handleRemovePictureAction, handleAddPictureAction } = props;
 
   const avatarStyle = {
     height: props.height ? `${props.height}px` : '100%',
@@ -40,12 +40,12 @@ const EditProfileAvatar = (props) => {
       {src ?
         <div>
           <div className={classes.transparentLayer} style={avatarStyle}>
-            <XksIcon handleRemoveAction={handleRemovePictureAction}/>
+            <XksIcon handleRemoveAction={handleRemovePictureAction} />
           </div>
-          <img src={src} alt={fullName} className={classes.avatarBase} style={avatarStyle}/>
+          <img src={src} alt={name} className={classes.avatarBase} style={avatarStyle} />
         </div> :
         <div className={classes.avatarBase} style={avatarStyle}>
-          <UploadIcon handleAction={handleAddPictureAction}/>
+          <UploadIcon handleAction={handleAddPictureAction} />
         </div>
       }
     </div>

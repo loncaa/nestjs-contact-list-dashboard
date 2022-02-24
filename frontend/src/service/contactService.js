@@ -7,15 +7,15 @@ function generateRandomAvatar(name) {
 }
 
 export function createContactProfilePayload(
-  { fullName,
+  { name,
     profilePicture,
     isFavorite,
     email,
     numbers }
 ) {
   return {
-    fullName,
-    profilePicture: profilePicture ? profilePicture : generateRandomAvatar(fullName),
+    name,
+    profilePicture: profilePicture ? profilePicture : generateRandomAvatar(name),
     email,
     isFavorite,
     numbers,
@@ -23,7 +23,7 @@ export function createContactProfilePayload(
 }
 
 export function createContactProfile(
-  fullName,
+  name,
   profilePicture,
   isFavorite,
   email,
@@ -31,7 +31,7 @@ export function createContactProfile(
 ) {
   return {
     id: Math.random(),
-    fullName,
+    name,
     profilePicture: profilePicture,
     email,
     isFavorite,

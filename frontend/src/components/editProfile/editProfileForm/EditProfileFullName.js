@@ -9,11 +9,11 @@ const EditProfileFullName = (props) => {
   return (
     <Grid key={'editfullname'} container className={EditProfileFromStyle.root}>
       <Grid key={`editfullname1`} className={EditProfileFromStyle.label} container item xs={12} sm={12}>
-        <ProfileIcon/>
+        <ProfileIcon />
         <span className={EditProfileFromStyle.labelText}>Full name</span>
       </Grid>
       <Grid key={`editfullname2`} container item xs={12} sm={12}>
-        <input className={EditProfileFromStyle.input} type="text" value={props.fullName} name={props.name} onChange={props.handleOnChange}/>
+        <input className={EditProfileFromStyle.input} type="text" value={props.fullName} name={props.name} onChange={props.handleOnChange} />
       </Grid>
     </Grid>
   );

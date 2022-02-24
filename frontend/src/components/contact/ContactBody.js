@@ -25,7 +25,7 @@ const ContactBody = (props) => {
   const classes = useStyles();
   const history = useHistory();
 
-  const { fullName, profilePicture } = props;
+  const { name, profilePicture } = props;
 
   const goToProfile = () => {
     props.handleSelectContact();
@@ -38,11 +38,11 @@ const ContactBody = (props) => {
         margin="auto"
         width={60}
         height={60}
-        alt={fullName}
+        alt={name}
         src={profilePicture}
         onClick={goToProfile}
       />
-      <div className={classes.label}>{fullName}</div>
+      <div className={classes.label}>{name}</div>
     </div>
   );
 };
