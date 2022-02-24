@@ -37,8 +37,13 @@ class Index extends Component {
       if (validationResponse.valid) {
         const payload = ContactService.createContactProfilePayload(this.state.dirtyContact)
 
-        ContactApiService.createContact(payload).then(contact =>
-          this.props.actions.contact.saveContact(contact));
+        if (!this.state.dirtyContact.id) {
+          ContactApiService.createContact(payload).then(contact =>
+            this.props.actions.contact.saveContact(contact));
+        } else {
+          ContactApiService.updateContact(this.state.dirtyContact.id, payload).then(contact =>
+            this.props.actions.contact.saveContact(contact));
+        }
 
         this.setState({ notificationOpen: true });
       } else {
