@@ -10,12 +10,6 @@ import Contact from "../../components/contact";
 import GridItem from "../../components/contact/GridItem";
 
 class Index extends Component {
-  componentDidMount() {
-    if (!this.props.list || this.props.list.length === 0) {
-      ContactApiService.fetchInitialContactsData().then(data => this.props.actions.contact.loadInitialData(data));
-    }
-  }
-
   addToFavorites = (contactId) => {
     ContactApiService.addToFavorites(contactId);
     this.props.actions.contact.addToFavorites(contactId);
