@@ -45,6 +45,10 @@ function contactReducers(state = initState, action) {
         delete newState.favorites[contactId];
       }
 
+      if (newState.selectedContact && newState.selectedContact.id === contactId) {
+        newState.selectedContact = null;
+      }
+
       return newState;
     }
     case actionTypes.SAVE_CONTACT: {
@@ -107,9 +111,9 @@ function contactReducers(state = initState, action) {
       const keys = Object.keys(list);
       keys.forEach(k => {
         if (newState.list[k]) {
-          const name = list[k].name.toLowerCase();
+          const contactName = list[k].name.toLowerCase();
           const searchingFor = name.toLowerCase();
-          if (name.startsWith(searchingFor)) {
+          if (contactName.startsWith(searchingFor)) {
             newState.filtered.push(list[k]);
           }
         }

@@ -1,7 +1,6 @@
 import { createAction } from '../actionHelper';
 import { actionTypes } from './contactActionTypes';
 
-//TODO adapt backend
 function loadContacts(contacts) {
   return createAction(actionTypes.LOAD_CONTACTS, { contacts });
 }

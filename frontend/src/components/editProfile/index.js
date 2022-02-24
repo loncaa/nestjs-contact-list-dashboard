@@ -6,9 +6,7 @@ import EditProfileInformation from './editProfileInformation';
 import { ROUTES } from '../../constants';
 
 import EditProfileStyle from './editProfile.module.css'
-
 import EditProfileHeaderMobile from './header/EditProfileHeaderMobile';
-
 
 const Index = (props) => {
   const { id, name, profilePicture } = props.dirty
@@ -23,7 +21,6 @@ const Index = (props) => {
     props.handleRemoveContact(id);
     history.push(ROUTES.home);
   }
-
 
   return (
     <React.Fragment>
