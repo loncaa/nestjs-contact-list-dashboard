@@ -3,6 +3,7 @@ import {
   Contact,
   ContactsResponseObject,
   ContactDatabaseEntry,
+  InitialDataResponseObject,
 } from './interfaces/contact.interface';
 
 import { Injectable } from '@nestjs/common';
@@ -43,13 +44,23 @@ export class ContactRepository {
       return acc;
     }, []);
 
-    const count = list.length;
+    const count = favorites.length;
     const contacts = favorites.splice(first, offset);
 
     return {
       count,
       contacts,
     };
+  }
+
+  getInitialData(): InitialDataResponseObject {
+    const contactsData = this.getAllContacts();
+    const favoritesData = this.getAllFavoriteContacts();
+
+    return {
+      data: contactsData,
+      favorites: favoritesData
+    }
   }
 
   storeContact(contact: CreateContactDTO): Contact {

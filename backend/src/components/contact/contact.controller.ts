@@ -31,6 +31,13 @@ export class ContactController {
     return contact;
   }
 
+  @Get('/data')
+  getInitialData() {
+    const contacts = this.contactService.getInitialData();
+
+    return contacts;
+  }
+
   @Get('/favorite')
   getContactFavorites(@Query('first') first, @Query('offset') offset) {
     const contacts = this.contactService.getFavoriteContacts(first, offset);

@@ -4,6 +4,7 @@ import { CreateContactDTO } from './dto/contact.dto';
 import {
   Contact,
   ContactsResponseObject,
+  InitialDataResponseObject,
 } from './interfaces/contact.interface';
 
 @Injectable()
@@ -12,6 +13,11 @@ export class ContactService {
 
   getContacts(first: number, offset: number): ContactsResponseObject {
     const response = this.contactRepository.getAllContacts(first, offset);
+    return response;
+  }
+
+  getInitialData(): InitialDataResponseObject {
+    const response = this.contactRepository.getInitialData();
     return response;
   }
 

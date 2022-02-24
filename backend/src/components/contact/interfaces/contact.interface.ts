@@ -20,3 +20,9 @@ export interface ContactsResponseObject {
   contacts: Contact[];
   count: number;
 }
+
+
+export interface InitialDataResponseObject {
+  data: ContactsResponseObject,
+  favorites: ContactsResponseObject
+}
