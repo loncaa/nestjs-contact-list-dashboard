@@ -35,7 +35,7 @@ const useStyles = makeStyles({
   },
 });
 
-const AppHeader = (props) => {
+const AppHeader = () => {
   const classes = useStyles();
   return (
     <div className={classes.header}>
