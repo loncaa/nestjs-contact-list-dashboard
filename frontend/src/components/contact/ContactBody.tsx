@@ -21,7 +21,13 @@ const useStyles = makeStyles({
   },
 });
 
-const ContactBody = (props) => {
+interface ContactBodyInterface {
+  name: string;
+  profilePicture: string;
+  handleSelectContact: Function;
+}
+
+const ContactBody = (props: ContactBodyInterface) => {
   const classes = useStyles();
   const history = useHistory();
 
