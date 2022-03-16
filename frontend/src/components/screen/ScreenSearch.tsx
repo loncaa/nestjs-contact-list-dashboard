@@ -3,7 +3,7 @@ import SearchIcon from '../icon/search';
 
 import SceneSearchStyle from './screen.module.css';
 
-const screenSearch = (props) => {
+const ScreenSearch = (props) => {
   const handleChanges = event => {
     const { target: { value } } = event
 
@@ -18,4 +18,4 @@ const screenSearch = (props) => {
   )
 };
 
-export default screenSearch;
+export default ScreenSearch;

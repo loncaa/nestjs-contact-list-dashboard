@@ -1,17 +1,17 @@
-import { actionTypes } from './contactActionTypes';
+import { actionTypes } from "./contactActionTypes";
 
-import { DEFAULT_CONTACT } from '../../service/contactService'
+import { DEFAULT_CONTACT } from "../../service/contact.factory";
 
 const initState = {
   filtered: [],
   list: null,
   favorites: [],
-  selectedContact: null
-}
+  selectedContact: null,
+};
 
 function contactReducers(state = initState, action) {
-  let newState = { ...state }
-  const data = { ...action.data }
+  let newState = { ...state };
+  const data = { ...action.data };
 
   switch (action.type) {
     case actionTypes.LOAD_CONTACTS:
@@ -19,8 +19,8 @@ function contactReducers(state = initState, action) {
         list: data.contacts,
         favorites: data.favorites,
         filtered: [],
-        selectedContact: null
-      }
+        selectedContact: null,
+      };
 
       return newState;
     case actionTypes.LOAD_INITIAL_CONTACTS:
@@ -30,8 +30,8 @@ function contactReducers(state = initState, action) {
         list: initial.contacts,
         favorites: initial.favorites,
         filtered: [],
-        selectedContact: null
-      }
+        selectedContact: null,
+      };
 
       return newState;
     case actionTypes.REMOVE_CONTACT: {
@@ -45,7 +45,10 @@ function contactReducers(state = initState, action) {
         delete newState.favorites[contactId];
       }
 
-      if (newState.selectedContact && newState.selectedContact.id === contactId) {
+      if (
+        newState.selectedContact &&
+        newState.selectedContact.id === contactId
+      ) {
         newState.selectedContact = null;
       }
 
@@ -62,7 +65,10 @@ function contactReducers(state = initState, action) {
         newState.favorites[contactId] = data;
       }
 
-      if (newState.selectedContact && newState.selectedContact.id === contactId) {
+      if (
+        newState.selectedContact &&
+        newState.selectedContact.id === contactId
+      ) {
         newState.selectedContact = data;
       }
 
@@ -78,7 +84,6 @@ function contactReducers(state = initState, action) {
       let contact = newState.list[contactId];
 
       if (contact) {
-
         contact.isFavorite = true;
 
         if (!newState.favorites[contactId]) {
@@ -109,7 +114,7 @@ function contactReducers(state = initState, action) {
       const list = favorites ? newState.favorites : newState.list;
 
       const keys = Object.keys(list);
-      keys.forEach(k => {
+      keys.forEach((k) => {
         if (newState.list[k]) {
           const contactName = list[k].name.toLowerCase();
           const searchingFor = name.toLowerCase();
@@ -117,7 +122,7 @@ function contactReducers(state = initState, action) {
             newState.filtered.push(list[k]);
           }
         }
-      })
+      });
 
       return newState;
     }
@@ -126,7 +131,8 @@ function contactReducers(state = initState, action) {
       return newState;
     }
     case actionTypes.SELECT_CONTACT: {
-      const contact = data.contact === undefined ? DEFAULT_CONTACT : data.contact;
+      const contact =
+        data.contact === undefined ? DEFAULT_CONTACT : data.contact;
 
       return { ...newState, selectedContact: contact };
     }

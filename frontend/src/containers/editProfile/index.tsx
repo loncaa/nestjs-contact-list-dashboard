@@ -5,7 +5,7 @@ import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 import * as contactActions from '../../redux/contact/contactActions';
 
-import * as ContactService from '../../service/contactService'
+import * as ContactService from '../../service/contact.factory'
 import { handleValidation } from '../../validators/contactFormValidation';
 import EditProfileNotification
   from '../../components/editProfile/EditProfileNotification';

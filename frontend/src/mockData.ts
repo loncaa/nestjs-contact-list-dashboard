@@ -1,4 +1,4 @@
-import { createNumber, createContactProfile } from "./service/contactService";
+import { createNumber, createContactProfile } from "./service/contact.factory";
 
 const c1 = createContactProfile(
   "Addie",
