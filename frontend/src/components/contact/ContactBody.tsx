@@ -30,7 +30,7 @@ const ContactBody = (props: ContactBodyProps) => {
 
   const goToProfile = () => {
     props.handleSelectContact();
-    history.push(ROUTES.profile);
+    history(ROUTES.profile);
   };
 
   return (

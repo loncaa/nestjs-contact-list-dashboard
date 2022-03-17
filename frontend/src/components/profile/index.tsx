@@ -18,7 +18,7 @@ const Profile = (props: any) => {
   };
 
   const editContact = () => {
-    history.push(ROUTES.edit);
+    history(ROUTES.edit);
   };
 
   const addToFavorites = () => {

@@ -44,7 +44,7 @@ const GridItem = (props: ContactGridItemProps) => {
 
   const addNewContact = () => {
     props.handleAddNewContact();
-    history.push(ROUTES.createProfile);
+    history(ROUTES.createProfile);
   };
 
   return (

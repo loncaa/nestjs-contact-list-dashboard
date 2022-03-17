@@ -54,12 +54,12 @@ const ContactMobile = (props: ContactProps) => {
 
   const editContact = () => {
     props.handleSelectContact();
-    history.push(ROUTES.edit);
+    history(ROUTES.edit);
   };
 
   const goToProfile = () => {
     props.handleSelectContact();
-    history.push(ROUTES.profile);
+    history(ROUTES.profile);
   };
 
   return (

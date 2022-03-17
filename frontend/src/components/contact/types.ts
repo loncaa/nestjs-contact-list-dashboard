@@ -30,7 +30,7 @@ export interface ContactHeaderProps {
 
 export interface ContactBodyProps {
   name: string;
-  profilePicture: string;
+  profilePicture: string | null | undefined;
   handleSelectContact: Function;
 }
 

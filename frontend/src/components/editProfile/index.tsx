@@ -24,7 +24,7 @@ const Index = (props: EditProfileProps) => {
 
   const removeContact = () => {
     props.handleRemoveContact(id);
-    history.push(ROUTES.home);
+    history(ROUTES.home);
   };
 
   return (

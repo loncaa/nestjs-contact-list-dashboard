@@ -29,7 +29,7 @@ const ContactHeader = (props: ContactHeaderProps) => {
 
   const editContact = () => {
     props.handleSelectContact();
-    history.push(ROUTES.edit);
+    history(ROUTES.edit);
   };
 
   return (
