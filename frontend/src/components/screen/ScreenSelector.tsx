@@ -1,4 +1,3 @@
-import React from "react";
 import { makeStyles } from "@material-ui/core/styles";
 
 import ScreenStyle from "./screen.module.css";
@@ -24,7 +23,7 @@ const useStyles = makeStyles({
   },
 });
 
-const ScreenSelector = (props) => {
+const ScreenSelector = (props: any) => {
   const classes = useStyles();
 
   return (

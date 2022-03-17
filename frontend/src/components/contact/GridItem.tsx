@@ -1,9 +1,10 @@
-import React from "react";
 import AddIcon from "@material-ui/icons/Add";
 
 import { useHistory } from "react-router-dom";
 import { makeStyles } from "@material-ui/core/styles";
 import { ROUTES } from "../../constants";
+
+import { ContactGridItemProps } from "./types";
 
 const useStyles = makeStyles({
   box: {
@@ -37,7 +38,7 @@ const useStyles = makeStyles({
   },
 });
 
-const GridItem = (props) => {
+const GridItem = (props: ContactGridItemProps) => {
   const classes = useStyles();
   const history = useHistory();
 

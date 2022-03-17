@@ -1,21 +1,23 @@
-import React from 'react'
-import SearchIcon from '../icon/search';
+import React from "react";
+import SearchIcon from "../icon/search";
 
-import SceneSearchStyle from './screen.module.css';
+import SceneSearchStyle from "./screen.module.css";
 
-const ScreenSearch = (props) => {
-  const handleChanges = event => {
-    const { target: { value } } = event
+const ScreenSearch = (props: any) => {
+  const handleChanges = (event: any) => {
+    const {
+      target: { value },
+    } = event;
 
     props.handleSearchContact(value);
-  }
+  };
 
   return (
-      <div className={SceneSearchStyle.search}>
-        <SearchIcon/>
-        <input type="text" name={'search'} onChange={handleChanges}/>
-      </div>
-  )
+    <div className={SceneSearchStyle.search}>
+      <SearchIcon />
+      <input type="text" name={"search"} onChange={handleChanges} />
+    </div>
+  );
 };
 
 export default ScreenSearch;

@@ -1,43 +1,45 @@
-import React from 'react';
-import { useHistory } from 'react-router-dom';
-import { makeStyles } from '@material-ui/core/styles';
+import React from "react";
+import { useHistory } from "react-router-dom";
+import { makeStyles } from "@material-ui/core/styles";
 
-import EditProfileEmail from './EditProfileEmail';
-import EditProfileFullName from './EditProfileFullName';
-import EditProfilePhoneNumbers from './EditProfilePhoneNumbers';
-import EditProfileFormFooter from './EditProfileFormFooter';
-import Grid from '@material-ui/core/Grid';
-import PlusIcon from '../../icon/plus';
+import EditProfileEmail from "./EditProfileEmail";
+import EditProfileFullName from "./EditProfileFullName";
+import EditProfilePhoneNumbers from "./EditProfilePhoneNumbers";
+import EditProfileFormFooter from "./EditProfileFormFooter";
+import Grid from "@material-ui/core/Grid";
+import PlusIcon from "../../icon/plus";
+
+import { EditProfileFormProps } from "../types";
 
 const useStyles = makeStyles({
   label: {
-    margin: 'auto 0',
-    color: '#2DA1AD',
-    fontSize: '14px',
+    margin: "auto 0",
+    color: "#2DA1AD",
+    fontSize: "14px",
     letterSpacing: 0,
-    lineHeight: '17px',
+    lineHeight: "17px",
   },
   saveWrapper: {
-    display: 'block',
-    textAlign: 'right',
+    display: "block",
+    textAlign: "right",
   },
   button: {
-    cursor: 'pointer',
-    color: '#FFF',
-    height: '32px',
-    width: '32px',
-    borderRadius: '50%',
-    backgroundColor: 'white',
-    border: '1px solid #2DA1AD',
-    marginRight: '15px',
-    textAlign: 'center',
+    cursor: "pointer",
+    color: "#FFF",
+    height: "32px",
+    width: "32px",
+    borderRadius: "50%",
+    backgroundColor: "white",
+    border: "1px solid #2DA1AD",
+    marginRight: "15px",
+    textAlign: "center",
   },
   buttonContainer: {
-    marginTop: '76px',
+    marginTop: "76px",
   },
 });
 
-const EditProfileForm = (props) => {
+const EditProfileForm = (props: EditProfileFormProps) => {
   const { name, email, numbers } = props.contact;
 
   const classes = useStyles();
@@ -47,7 +49,7 @@ const EditProfileForm = (props) => {
     history.goBack();
   };
 
-  const handleOnSubmit = (e) => {
+  const handleOnSubmit = (e: any) => {
     e.preventDefault();
     props.handleOnContactDataSave();
   };
@@ -55,15 +57,16 @@ const EditProfileForm = (props) => {
   return (
     <form onSubmit={handleOnSubmit}>
       <EditProfileFullName
-        name='name'
+        name="name"
         handleOnChange={props.handleOnChange}
-        fullName={name} />
+        fullName={name}
+      />
 
       <EditProfileEmail
-        name='email'
+        name="email"
         handleOnChange={props.handleOnChange}
-        email={email} />
-
+        email={email}
+      />
 
       <EditProfilePhoneNumbers
         numbers={numbers}
@@ -72,16 +75,13 @@ const EditProfileForm = (props) => {
       />
 
       <Grid container item xs={12} sm={12}>
-        <div className={classes.button} onClick={props.hadnleOnNewNumberAdded}>
+        <div className={classes.button} onClick={props.handleOnNewNumberAdded}>
           <PlusIcon />
         </div>
         <span className={classes.label}>Add number</span>
       </Grid>
 
-      <EditProfileFormFooter
-        handleOnClose={handleOnClose}
-      />
-
+      <EditProfileFormFooter handleOnClose={handleOnClose} />
     </form>
   );
 };

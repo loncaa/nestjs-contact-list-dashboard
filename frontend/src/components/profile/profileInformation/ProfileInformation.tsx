@@ -1,10 +1,10 @@
-import React from 'react';
-import ProfileForm from '../ProfileForm';
+import React from "react";
+import ProfileForm from "../ProfileForm";
 
-import ProfileInformationStyle from './profileInformation.module.css'
-import ProfileHeaderDesktop from '../header/ProfileHeaderDesktop';
+import ProfileInformationStyle from "./profileInformation.module.css";
+import ProfileHeaderDesktop from "../header/ProfileHeaderDesktop";
 
-const ProfileInformation = (props) => {
+const ProfileInformation = (props: any) => {
   return (
     <div className={ProfileInformationStyle.root}>
       <ProfileHeaderDesktop
@@ -17,14 +17,11 @@ const ProfileInformation = (props) => {
       />
       <div className={ProfileInformationStyle.border}>
         <div className={ProfileInformationStyle.form}>
-          <ProfileForm
-            email={props.email}
-            numbers={props.numbers}
-          />
+          <ProfileForm email={props.email} numbers={props.numbers} />
         </div>
       </div>
     </div>
   );
-}
+};
 
 export default ProfileInformation;

@@ -5,6 +5,8 @@ import { makeStyles } from "@material-ui/core/styles";
 import Avatar from "../profile/avatar";
 import { ROUTES } from "../../constants";
 
+import { ContactBodyProps } from "./types";
+
 const useStyles = makeStyles({
   container: {
     width: "100%",
@@ -21,13 +23,7 @@ const useStyles = makeStyles({
   },
 });
 
-interface ContactBodyInterface {
-  name: string;
-  profilePicture: string;
-  handleSelectContact: Function;
-}
-
-const ContactBody = (props: ContactBodyInterface) => {
+const ContactBody = (props: ContactBodyProps) => {
   const classes = useStyles();
   const history = useHistory();
 

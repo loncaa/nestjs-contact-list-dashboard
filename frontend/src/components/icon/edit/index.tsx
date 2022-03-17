@@ -1,27 +1,32 @@
-import React from 'react';
+import React from "react";
 
-import {makeStyles} from '@material-ui/core/styles';
-import Edit from './edit.svg';
+import { makeStyles } from "@material-ui/core/styles";
+import Edit from "./edit.svg";
 
 const useStyles = makeStyles({
   root: {
-    cursor: 'pointer',
-    display: 'inline-block'
+    cursor: "pointer",
+    display: "inline-block",
   },
   icon: {
-    height: '16px',
-    width: '16px',
+    height: "16px",
+    width: "16px",
   },
 });
 
-const Index = (props) => {
+const Index = (props: any) => {
   const classes = useStyles();
 
   return (
     <div className={classes.root} style={props.style}>
-      <img src={Edit} className={classes.icon}  alt="EditIcon" onClick={props.handleEditContact}/>
+      <img
+        src={Edit}
+        className={classes.icon}
+        alt="EditIcon"
+        onClick={props.handleEditContact}
+      />
     </div>
-  )
-}
+  );
+};
 
-export default Index
+export default Index;

@@ -1,19 +1,19 @@
-import React from 'react';
-import {makeStyles} from '@material-ui/core/styles';
-import ProfileHeader from './ProfileHeader';
+import React from "react";
+import { makeStyles } from "@material-ui/core/styles";
+import ProfileHeader from "./ProfileHeader";
 
-import AppStyle from '../../app/app.module.css';
+import AppStyle from "../../app/app.module.css";
 
 const useStyles = makeStyles({
   root: {
-    height: '50px',
-    padding: '0 30px',
-    borderBottom: '1px solid #BBC4C3',
-    display: 'flex',
-  }
+    height: "50px",
+    padding: "0 30px",
+    borderBottom: "1px solid #BBC4C3",
+    display: "flex",
+  },
 });
 
-const ProfileHeaderMobile = (props) => {
+const ProfileHeaderMobile = (props: any) => {
   const classes = useStyles();
 
   return (
@@ -26,7 +26,8 @@ const ProfileHeaderMobile = (props) => {
         handleEditContact={props.handleEditContact}
         isFavorite={props.isFavorite}
       />
-    </div>);
+    </div>
+  );
 };
 
 export default ProfileHeaderMobile;

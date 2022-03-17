@@ -1,15 +1,15 @@
-import React from 'react';
+import React from "react";
 
-import ProfilePhoneNumbers from './profilePhoneNumbers/ProfilePhoneNumbers';
-import ProfileEmail from './profileEmail/ProfileEmail';
+import ProfilePhoneNumbers from "./profilePhoneNumbers/ProfilePhoneNumbers";
+import ProfileEmail from "./profileEmail/ProfileEmail";
 
-const ProfileForm = (props) => {
+const ProfileForm = (prop: anys) => {
   return (
     <React.Fragment>
-      <ProfileEmail email={props.email}/>
-      <ProfilePhoneNumbers numbers={props.numbers}/>
+      <ProfileEmail email={props.email} />
+      <ProfilePhoneNumbers numbers={props.numbers} />
     </React.Fragment>
   );
-}
+};
 
 export default ProfileForm;

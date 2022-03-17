@@ -1,23 +1,23 @@
-import React from 'react';
+import React from "react";
 
-import {makeStyles} from '@material-ui/core/styles';
-import Profile from './profile.svg';
+import { makeStyles } from "@material-ui/core/styles";
+import Profile from "./profile.svg";
 
 const useStyles = makeStyles({
   icon: {
-    height: '16px',
-    width: '16px',
+    height: "16px",
+    width: "16px",
   },
 });
 
-const Index = (props) => {
+const Index = () => {
   const classes = useStyles();
 
   return (
     <React.Fragment>
-      <img src={Profile} className={classes.icon}  alt="ProfileIcon" />
+      <img src={Profile} className={classes.icon} alt="ProfileIcon" />
     </React.Fragment>
-  )
-}
+  );
+};
 
-export default Index
+export default Index;

@@ -1,18 +1,18 @@
-import React from 'react';
-import {makeStyles} from '@material-ui/core/styles';
+import React from "react";
+import { makeStyles } from "@material-ui/core/styles";
 
-import ProfileHeader from './ProfileHeader';
-import AppStyle from '../../app/app.module.css';
+import ProfileHeader from "./ProfileHeader";
+import AppStyle from "../../app/app.module.css";
 
 const useStyles = makeStyles({
   root: {
-    marginTop: '10px',
-    display: 'flex',
-    height: '80px',
-  }
+    marginTop: "10px",
+    display: "flex",
+    height: "80px",
+  },
 });
 
-const ProfileHeaderDesktop = (props) => {
+const ProfileHeaderDesktop = (props: any) => {
   const classes = useStyles();
 
   return (
@@ -25,7 +25,8 @@ const ProfileHeaderDesktop = (props) => {
         handleEditContact={props.handleEditContact}
         isFavorite={props.isFavorite}
       />
-    </div>);
+    </div>
+  );
 };
 
 export default ProfileHeaderDesktop;

@@ -1,23 +1,23 @@
-import React from 'react';
+import React from "react";
 
-import {makeStyles} from '@material-ui/core/styles';
-import Email from './email.svg';
+import { makeStyles } from "@material-ui/core/styles";
+import Email from "./email.svg";
 
 const useStyles = makeStyles({
   icon: {
-    height: '10px',
-    width: '15px',
+    height: "10px",
+    width: "15px",
   },
 });
 
-const Index = (props) => {
+const Index = (props: any) => {
   const classes = useStyles();
 
   return (
-    <div style={{...props.style}}>
-      <img src={Email} className={classes.icon}  alt="Email"/>
+    <div style={{ ...props.style }}>
+      <img src={Email} className={classes.icon} alt="Email" />
     </div>
-  )
-}
+  );
+};
 
-export default Index
+export default Index;

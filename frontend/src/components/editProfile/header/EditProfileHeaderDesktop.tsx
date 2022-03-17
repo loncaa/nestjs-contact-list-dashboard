@@ -1,18 +1,20 @@
-import React from 'react';
-import {makeStyles} from '@material-ui/core/styles';
-import EditProfileHeader from './EditProfileHeader';
+import React from "react";
+import { makeStyles } from "@material-ui/core/styles";
+import EditProfileHeader from "./EditProfileHeader";
 
-import AppStyle from '../../app/app.module.css';
+import AppStyle from "../../app/app.module.css";
+
+import { EditProfileHeaderProps } from "../types";
 
 const useStyles = makeStyles({
   root: {
-      marginTop: '10px',
-      display: 'flex',
-      height: '80px'
-  }
+    marginTop: "10px",
+    display: "flex",
+    height: "80px",
+  },
 });
 
-const EditProfileHeaderDesktop = (props) => {
+const EditProfileHeaderDesktop = (props: EditProfileHeaderProps) => {
   const classes = useStyles();
 
   return (
@@ -22,7 +24,8 @@ const EditProfileHeaderDesktop = (props) => {
         handleBackToContacts={props.handleBackToContacts}
         handleRemoveContact={props.handleRemoveContact}
       />
-    </div>);
+    </div>
+  );
 };
 
 export default EditProfileHeaderDesktop;

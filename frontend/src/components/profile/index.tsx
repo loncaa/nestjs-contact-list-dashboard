@@ -1,17 +1,17 @@
-import React from 'react';
-import { useHistory } from 'react-router-dom';
+import React from "react";
+import { useHistory } from "react-router-dom";
 
-import ProfileInformation from './profileInformation/ProfileInformation';
-import { ROUTES } from '../../constants';
-import ProfileHeaderMobile from './header/ProfileHeaderMobile';
+import ProfileInformation from "./profileInformation/ProfileInformation";
+import { ROUTES } from "../../constants";
+import ProfileHeaderMobile from "./header/ProfileHeaderMobile";
 
-import ProfileStyle from './profile.module.css';
-import Index from './profileAvatar';
+import ProfileStyle from "./profile.module.css";
+import Index from "./profileAvatar";
 
-
-const Profile = (props) => {
+const Profile = (props: any) => {
   const history = useHistory();
-  const { id, name, profilePicture, email, numbers, isFavorite } = props.contact;
+  const { id, name, profilePicture, email, numbers, isFavorite } =
+    props.contact;
 
   const backToContacts = () => {
     history.goBack();
@@ -39,9 +39,7 @@ const Profile = (props) => {
         isFavorite={isFavorite}
       />
       <div className={ProfileStyle.root}>
-        <Index
-          name={name}
-          profilePicture={profilePicture} />
+        <Index name={name} profilePicture={profilePicture} />
         <ProfileInformation
           handleAddToFavorites={addToFavorites}
           handleRemoveFromFavorites={removeFromFavorites}

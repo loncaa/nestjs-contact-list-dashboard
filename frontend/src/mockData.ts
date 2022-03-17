@@ -1,3 +1,4 @@
+import { ContactItem } from "./components/contact/types";
 import { createNumber, createContactProfile } from "./service/contact.factory";
 
 const c1 = createContactProfile(
@@ -68,7 +69,7 @@ const c7 = createContactProfile("Kit", "", false, "addie.hernandez@gmail.com", [
   createNumber("CELL", "+385986547541"),
 ]);
 
-let contacts = {};
+let contacts: Record<any, ContactItem> = {};
 contacts[c1.id] = c1;
 contacts[c2.id] = c2;
 contacts[c3.id] = c3;
@@ -77,7 +78,7 @@ contacts[c5.id] = c5;
 contacts[c6.id] = c6;
 contacts[c7.id] = c7;
 
-let favorites = {};
+let favorites: Record<any, ContactItem> = {};
 favorites[c2.id] = c2;
 
 export { contacts, favorites };

@@ -1,11 +1,10 @@
-import React from 'react';
-import FavoriteIcon from '../../icon/favorite';
-import BackIcon from '../../icon/back';
-import EditIcon from '../../icon/edit';
+import FavoriteIcon from "../../icon/favorite";
+import BackIcon from "../../icon/back";
+import EditIcon from "../../icon/edit";
 
-import ProfileHeaderStyle from './header.module.css'
+import ProfileHeaderStyle from "./header.module.css";
 
-const ProfileHeader = (props) => {
+const ProfileHeader = (props: any) => {
   const classes = props.classes;
 
   return (
@@ -19,13 +18,15 @@ const ProfileHeader = (props) => {
         <FavoriteIcon
           isFavorite={props.isFavorite}
           handleRemoveFromFavorites={props.handleRemoveFromFavorites}
-          handleAddToFavorites={props.handleAddToFavorites} />
+          handleAddToFavorites={props.handleAddToFavorites}
+        />
         <EditIcon
           handleEditContact={props.handleEditContact}
-          style={{ marginLeft: '33px' }}
+          style={{ marginLeft: "33px" }}
         />
       </div>
-    </div>);
+    </div>
+  );
 };
 
 export default ProfileHeader;

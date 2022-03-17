@@ -1,5 +1,3 @@
-import React from "react";
-
 import FavoriteIcon from "../icon/favorite";
 import DeleteIcon from "../icon/delete";
 import EditIcon from "../icon/edit";
@@ -7,6 +5,8 @@ import EditIcon from "../icon/edit";
 import { useHistory } from "react-router-dom";
 import { makeStyles } from "@material-ui/core/styles";
 import { ROUTES } from "../../constants";
+
+import { ContactHeaderProps } from "./types";
 
 const useStyles = makeStyles({
   root: {
@@ -23,7 +23,7 @@ const useStyles = makeStyles({
   },
 });
 
-const ContactHeader = (props) => {
+const ContactHeader = (props: ContactHeaderProps) => {
   const classes = useStyles();
   const history = useHistory();
 

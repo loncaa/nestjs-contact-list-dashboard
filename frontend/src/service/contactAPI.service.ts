@@ -2,10 +2,10 @@ import axios from "axios";
 
 const CONTACTS_OFFSET = 9;
 
+import { ContactPayload } from "./types";
+
 async function fetchInitialContactsData() {
-  const response = await axios.get(
-    `/contact/data`
-  );
+  const response = await axios.get(`/contact/data`);
   const { data, favorites } = response.data;
   const totalPages = Math.ceil(data.count / CONTACTS_OFFSET);
 
@@ -16,7 +16,7 @@ async function fetchInitialContactsData() {
   };
 }
 
-async function fetchContacts(page) {
+async function fetchContacts(page: number) {
   const first = (page - 1) * CONTACTS_OFFSET;
   const response = await axios.get(
     `/contact?first=${first}&offset=${CONTACTS_OFFSET}`
@@ -30,40 +30,34 @@ async function fetchContacts(page) {
   };
 }
 
-async function fetchContactById(id) {
+async function fetchContactById(id: string) {
   const response = await axios.get(`/contact/${id}`);
   return response.data;
 }
 
-async function createContact(
-  createContactPayload
-) {
+async function createContact(createContactPayload: ContactPayload) {
   const response = await axios.post(`/contact`, createContactPayload);
   return response.data;
 }
 
-async function updateContact(
-  id,
-  createContactPayload
-) {
+async function updateContact(id: string, createContactPayload: ContactPayload) {
   const response = await axios.put(`/contact/${id}`, createContactPayload);
   return response.data;
 }
-async function deleteContact(id) {
+async function deleteContact(id: string) {
   const response = await axios.delete(`/contact/${id}`);
   return response.data;
 }
 
-async function addToFavorites(id) {
+async function addToFavorites(id: string) {
   const response = await axios.post(`/contact/favorite/${id}`);
   return response.data;
 }
 
-async function removeFromFavorites(id) {
+async function removeFromFavorites(id: string) {
   const response = await axios.delete(`/contact/favorite/${id}`);
   return response.data;
 }
-
 
 export {
   fetchInitialContactsData,
