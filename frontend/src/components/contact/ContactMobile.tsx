@@ -1,4 +1,4 @@
-import { useHistory } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 
 import { makeStyles } from "@material-ui/core/styles";
 import AppStyle from "../app/app.module.css";
@@ -48,7 +48,7 @@ const useStyles = makeStyles({
 
 const ContactMobile = (props: ContactProps) => {
   const classes = useStyles();
-  const history = useHistory();
+  const history = useNavigate();
 
   const { name, profilePicture, isFavorite } = props.item;
 

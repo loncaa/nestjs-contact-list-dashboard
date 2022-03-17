@@ -1,6 +1,6 @@
 import AddIcon from "@material-ui/icons/Add";
 
-import { useHistory } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import { makeStyles } from "@material-ui/core/styles";
 import { ROUTES } from "../../constants";
 
@@ -40,7 +40,7 @@ const useStyles = makeStyles({
 
 const GridItem = (props: ContactGridItemProps) => {
   const classes = useStyles();
-  const history = useHistory();
+  const history = useNavigate();
 
   const addNewContact = () => {
     props.handleAddNewContact();

@@ -1,5 +1,5 @@
 import React from "react";
-import { useHistory } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 
 import EditProfileAvatar from "./editProfileAvatar";
 import EditProfileInformation from "./editProfileInformation";
@@ -16,7 +16,7 @@ const Index = (props: EditProfileProps) => {
     profilePicture: "None",
   };
 
-  const history = useHistory();
+  const history = useNavigate();
 
   const backToContacts = () => {
     history.goBack();

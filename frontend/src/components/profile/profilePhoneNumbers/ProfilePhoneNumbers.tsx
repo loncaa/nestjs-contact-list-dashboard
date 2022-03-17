@@ -1,5 +1,3 @@
-import React from "react";
-
 import Grid from "@material-ui/core/Grid";
 import PhoneIcon from "../../icon/phone";
 import { makeStyles } from "@material-ui/core/styles";

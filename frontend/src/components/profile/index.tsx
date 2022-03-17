@@ -1,5 +1,5 @@
 import React from "react";
-import { useHistory } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 
 import ProfileInformation from "./profileInformation/ProfileInformation";
 import { ROUTES } from "../../constants";
@@ -9,7 +9,7 @@ import ProfileStyle from "./profile.module.css";
 import Index from "./profileAvatar";
 
 const Profile = (props: any) => {
-  const history = useHistory();
+  const history = useNavigate();
   const { id, name, profilePicture, email, numbers, isFavorite } =
     props.contact;
 

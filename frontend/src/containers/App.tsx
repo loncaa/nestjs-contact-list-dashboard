@@ -1,5 +1,5 @@
 import { FunctionComponent, useEffect } from "react";
-import { BrowserRouter, Route, Switch } from "react-router-dom";
+import { BrowserRouter, Route, Routes } from "react-router-dom";
 
 import "./app.css";
 import { ROUTES } from "../constants";
@@ -25,13 +25,13 @@ const App: FunctionComponent<any> = (props) => {
     <BrowserRouter>
       <div className="App">
         <AppHeader />
-        <Switch>
-          <Route path={ROUTES.home} component={Screen} exact />
-          <Route path={ROUTES.createProfile} component={EditProfileContainer} />
-          <Route path={ROUTES.edit} component={EditProfileContainer} />
-          <Route path={ROUTES.profile} component={Profile} />
-          <Route component={Error} />
-        </Switch>
+        <Routes>
+          <Route path={ROUTES.home} element={Screen} />
+          <Route path={ROUTES.createProfile} element={EditProfileContainer} />
+          <Route path={ROUTES.edit} element={EditProfileContainer} />
+          <Route path={ROUTES.profile} element={Profile} />
+          <Route element={Error} />
+        </Routes>
       </div>
     </BrowserRouter>
   );

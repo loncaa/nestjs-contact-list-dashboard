@@ -1,5 +1,5 @@
 import { FunctionComponent } from "react";
-import { Redirect } from "react-router-dom";
+import { Navigate } from "react-router-dom";
 
 import { useAppDispatch } from "../app/hooks";
 import {
@@ -27,7 +27,7 @@ const ProfileContainer: FunctionComponent<any> = (props) => {
       contact={props.contact.selectedContact}
     />
   ) : (
-    <Redirect to="/" />
+    <Navigate to="/" />
   );
 };
 

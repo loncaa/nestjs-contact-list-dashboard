@@ -1,4 +1,3 @@
-import React from "react";
 import ScreenSearch from "./ScreenSearch";
 import ContactsContainer from "../../containers/Contacts";
 

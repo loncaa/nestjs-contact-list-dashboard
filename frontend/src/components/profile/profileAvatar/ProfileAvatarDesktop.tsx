@@ -1,6 +1,4 @@
-import React from "react";
 import Avatar from "../avatar";
-
 import AppStyle from "../../app/app.module.css";
 
 const ProfileAvatarDesktop = (props: any) => {

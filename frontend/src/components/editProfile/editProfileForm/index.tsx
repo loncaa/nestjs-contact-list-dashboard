@@ -1,5 +1,4 @@
-import React from "react";
-import { useHistory } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import { makeStyles } from "@material-ui/core/styles";
 
 import EditProfileEmail from "./EditProfileEmail";
@@ -43,7 +42,7 @@ const EditProfileForm = (props: EditProfileFormProps) => {
   const { name, email, numbers } = props.contact;
 
   const classes = useStyles();
-  const history = useHistory();
+  const history = useNavigate();
 
   const handleOnClose = () => {
     history.goBack();

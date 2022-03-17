@@ -1,4 +1,3 @@
-import React from "react";
 import SearchIcon from "../icon/search";
 
 import SceneSearchStyle from "./screen.module.css";

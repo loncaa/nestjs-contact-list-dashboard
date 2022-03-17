@@ -2,7 +2,7 @@ import FavoriteIcon from "../icon/favorite";
 import DeleteIcon from "../icon/delete";
 import EditIcon from "../icon/edit";
 
-import { useHistory } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import { makeStyles } from "@material-ui/core/styles";
 import { ROUTES } from "../../constants";
 
@@ -25,7 +25,7 @@ const useStyles = makeStyles({
 
 const ContactHeader = (props: ContactHeaderProps) => {
   const classes = useStyles();
-  const history = useHistory();
+  const history = useNavigate();
 
   const editContact = () => {
     props.handleSelectContact();
