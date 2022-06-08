@@ -10,13 +10,18 @@ import EditProfileContainer from "./EditProfile";
 import Profile from "./Profile";
 import Error from "../components/Error";
 
-import * as ContactApiService from "../service/contactAPI.service";
+import * as ContactApiService from "../service/contactAPIService";
+
+import { useAppDispatch } from "../app/hooks";
+import { loadContacts } from "../app/contact/contactSlice";
 
 const App: FunctionComponent<any> = (props) => {
+  const dispatch = useAppDispatch();
+
   useEffect(() => {
     if (!props.list || props.list.length === 0) {
       ContactApiService.fetchInitialContactsData().then((data) =>
-        props.actions.contact.loadInitialData(data)
+        dispatch(loadContacts(data))
       );
     }
   });

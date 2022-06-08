@@ -1,7 +1,7 @@
 import { FunctionComponent } from "react";
 import Grid from "@material-ui/core/Grid";
 
-import * as ContactApiService from "../service/contactAPI.service";
+import * as ContactApiService from "../service/contactAPIService";
 
 import Contact from "../components/contact";
 import GridItem from "../components/contact/GridItem";

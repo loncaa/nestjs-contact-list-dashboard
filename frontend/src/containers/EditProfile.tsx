@@ -1,8 +1,8 @@
 import React, { FunctionComponent, useEffect, useState } from "react";
-import * as ContactApiService from "../service/contactAPI.service";
+import * as ContactApiService from "../service/contactAPIService";
 import EditProfile from "../components/editProfile";
 
-import * as ContactService from "../service/contact.factory";
+import * as ContactService from "../service/contactFactory";
 import { handleValidation } from "../validators/contactFormValidation";
 import EditProfileNotification from "../components/editProfile/EditProfileNotification";
 import { ContactItem } from "../components/contact/types";

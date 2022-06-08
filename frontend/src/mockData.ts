@@ -1,5 +1,5 @@
 import { ContactItem } from "./components/contact/types";
-import { createNumber, createContactProfile } from "./service/contact.factory";
+import { createNumber, createContactProfile } from "./service/contactFactory";
 
 const c1 = createContactProfile(
   "Addie",
